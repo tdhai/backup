@@ -32,8 +32,8 @@ const getAllCustomers = async () => {
   })
 }
 
-const checkEmailValid = (cusEmail)=>{
-  return Customer.findOne({
+const checkEmailValid = async (cusEmail)=>{
+  return await Customer.findOne({
     "email": cusEmail
   })
 }

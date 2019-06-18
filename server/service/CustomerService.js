@@ -15,10 +15,10 @@ const createAccount = async (cusEmail, cusName, cusPassword, cusRePassword) =>{ 
     return {error: "Email is not valid"}
   }
 
-  // if(models.checkEmailValid(cusEmail) !== null){
-  //   return {err: "Email was registed"}
-  // }
-
+  if(await models.checkEmailValid(cusEmail) !== null){
+    return {err: "Email was registed"}
+  }
+  
   const cusPasswordHashed = await helper.hashPassword(cusPassword);
   
   return models.createAccount(cusEmail, cusName, cusPasswordHashed) //, cusAddress, cusPhone)
