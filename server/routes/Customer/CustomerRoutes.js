@@ -19,7 +19,7 @@ exports.plugin={
     })
 
     server.route({
-      method: 'GET',
+      method: 'POST',
       path: '/login',
       handler: controller.getCustomer
     })

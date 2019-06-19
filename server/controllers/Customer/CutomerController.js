@@ -12,12 +12,16 @@ const createAccount = async (req, h) => {
     // const cusAddress = req.payload.address
     return await service.createAccount(cusEmail, cusName, cusPassword, cusRePassword); //, cusAddress, cusPhone);
   } catch (error) {
-    throw (error)
+    console.log(error)
   };
 }
 
 const getAllCustomers = async (req, h) => {
-  return service.getAllCustomers();
+  try{
+    return service.getAllCustomers();
+  }catch (error) {
+    console.log(error)
+  };
 };
 
 const getCustomer = async (req, h) => {
@@ -26,8 +30,8 @@ const getCustomer = async (req, h) => {
     const cusPassword = req.payload.password
     return await service.getCustomer(cusEmail, cusPassword)
   } catch (error) {
-    throw (error)
-  }
+    console.log(error)
+  };
 }
 
 module.exports = {
