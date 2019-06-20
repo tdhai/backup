@@ -1,6 +1,4 @@
-const service = require('../../service/CustomerService')
-const models = require('../../models/CustomerModel')
-
+const service = require('../../service/Customer/CustomerService')
 
 const createAccount = async (req, h) => {
   try {
@@ -13,6 +11,7 @@ const createAccount = async (req, h) => {
     return await service.createAccount(cusEmail, cusName, cusPassword, cusRePassword); //, cusAddress, cusPhone);
   } catch (error) {
     console.log(error)
+    return error;
   };
 }
 
@@ -21,6 +20,7 @@ const getAllCustomers = async (req, h) => {
     return service.getAllCustomers();
   }catch (error) {
     console.log(error)
+    return error;
   };
 };
 
@@ -31,11 +31,34 @@ const getCustomer = async (req, h) => {
     return await service.getCustomer(cusEmail, cusPassword)
   } catch (error) {
     console.log(error)
+    return error;
   };
+}
+const updateAccount = async(req, h) =>{
+  try{
+    console.log('da vao update')
+    // const token = req.headers['authorization'];
+    const cusName = req.payload.name
+    const cusPassword = req.payload.password
+    // console.log(token, cusName, cusPassword)
+    // console.log(Response)
+    // const id = Response
+    // console.log(id)
+    const id =req.auth.credentials
+    console.log(req.auth.credentials)
+    console.log(req.auth)
+
+
+    return await service.updateAccount(id, cusName, cusPassword);
+  }catch(error){
+    console.log(error)
+    return error;
+  }
 }
 
 module.exports = {
   createAccount,
   getAllCustomers,
-  getCustomer
+  getCustomer,
+  updateAccount
 }

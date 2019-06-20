@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
-const jwt = require('jsonwebtoken')
-const privateKey = "abcd"
 const helper = require('../helper/helper')
 const bcrypt = require('bcrypt')
 
@@ -35,6 +33,7 @@ const getAllCustomers = async () => {
     })
   } catch (error) {
     console.log(error)
+    return error;
   }
 }
 
@@ -45,6 +44,7 @@ const findEmail = async (cusEmail) => {
     })
   } catch (error) {
     console.log(error)
+    return error;
   }
 }
 
@@ -56,10 +56,30 @@ const getCustomer = async (cusEmail, cusPassword) => {
     const status = await bcrypt.compare(cusPassword, cusDB.password)
     if (status === false) {
       return { err: 'Password wrong' }
-    } return await helper.tokenString(cusDB.email)
+    }return await helper.tokenString(cusDB._id)
   } catch (error) {
     console.log(error)
+    return error;
   }
+}
+
+const findEmailByID = async (id) => {
+  try {
+    return await Customer.findOne({
+      "_id": id
+    })
+  } catch (error) {
+    console.log(error)
+    return error;
+  }
+}
+
+const findEmailAndUpdate = async (token, cusName, cusPassword) => {
+  console.log('da  vao model')
+  return await Customer.findOneAndUpdate(
+    { '_id': token },
+    { $set: [{ 'name': cusName }, {'password': cusPassword}] }
+  )
 }
 
 module.exports = {
@@ -67,5 +87,7 @@ module.exports = {
   createAccount,
   getAllCustomers,
   findEmail,
-  getCustomer
+  getCustomer,
+  findEmailAndUpdate,
+  findEmailByID
 }

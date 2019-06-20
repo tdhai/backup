@@ -1,5 +1,5 @@
-const models = require('../models/CustomerModel')
-const helper = require('../helper/helper')
+const models = require('../../models/CustomerModel')
+const helper = require('../../helper/helper')
 
 
 const createAccount = async (cusEmail, cusName, cusPassword, cusRePassword) => { //, cusAddress, cusPhone) => {
@@ -26,6 +26,7 @@ const createAccount = async (cusEmail, cusName, cusPassword, cusRePassword) => {
 
   } catch (error) {
     console.log(error)
+    return error;
   }
 };
 
@@ -34,11 +35,11 @@ const getAllCustomers = async () => {
 }
 
 const getCustomer = async (cusEmail, cusPassword) => {
-  try{
+  try {
     if (!helper.checkPassword(cusPassword)) {
       return { error: "Password does not have 8 symbols" }
     }
-  
+
     if (!helper.checkEmail(cusEmail)) {
       return { error: "Email is not valid" }
     }
@@ -46,13 +47,28 @@ const getCustomer = async (cusEmail, cusPassword) => {
     //const cusPasswordHashed = await helper.hashPassword(cusPassword)
 
     return await models.getCustomer(cusEmail, cusPassword)
-  }catch(error){
+  } catch (error) {
     console.log(error)
+    return error;
+  }
+}
+
+const updateAccount = async (token, cusName, cusPassword) => {
+  try {
+    console.log('da vao service')
+    // const checkToken = await helper.Authentication(token)
+    // console.log(checkToken)
+    // const tokenEmail = checkToken._id
+    return await models.findEmailAndUpdate(token, cusName, cusPassword)
+  } catch (error) {
+    console.log(error)
+    return error;
   }
 }
 
 module.exports = {
   createAccount,
   getAllCustomers,
-  getCustomer
+  getCustomer,
+  updateAccount
 }

@@ -3,6 +3,7 @@ const saltRounds = 10;
 const jwt = require('jsonwebtoken')
 const privateKey = "abcd"
 const models = require('../models/CustomerModel')
+const Boom = require('@hapi/boom')
 
 const hashPassword = (password) => {
   return bcrypt.hash(password, saltRounds)
@@ -30,11 +31,34 @@ const comparePassword = (password, passwordDB) => {
 const tokenString = (emailID) => {
   const token = jwt.sign({
     data: emailID
-  }, privateKey, { expiresIn: '1h' });
+  }, privateKey, { expiresIn: '24h' });
   return { token: token };
 }
 
-
+// const Authentication = async (token) => {
+  
+//   try{
+//     return await jwt.verify(token, privateKey)
+//     // return await decoded
+//   }catch(error){
+//     console.log(error)
+//     return { error: 'Fail token'}
+//   };
+// }
+  
+    // let loginName = decoded.data;
+    // return Account.findOne({
+    //   loginName: loginName
+    // }).then(LogedIn => {
+    //   return Account.find((err, res) => {
+    //     if (err) {
+    //       return err;
+    //     }
+    //     return h.continue;
+    //   })
+    // }).catch(err => { return { err }
+//   });
+// }
 
 module.exports = {
   hashPassword,
@@ -43,4 +67,5 @@ module.exports = {
   checkPassword,
   comparePassword,
   tokenString,
+  // Authentication
 }

@@ -4,8 +4,8 @@ const mongoose = require('mongoose')
 const controller = require('../../controllers/Customer/CutomerController')
 
 
-exports.plugin={
-  register: (server, option) =>{
+exports.plugin = {
+  register: (server, option) => {
     server.route({
       method: 'POST',
       path: '/register',
@@ -13,22 +13,27 @@ exports.plugin={
     }),
 
     server.route({
+      method: 'POST',
+      path: '/login',
+      handler: controller.getCustomer
+    }),
+
+    server.route({
       method: 'GET',
-      path: '/getAllCustomers',
+      path: '/customers',
       handler: controller.getAllCustomers
     })
 
     server.route({
-      method: 'POST',
-      path: '/login',
-      handler: controller.getCustomer
-    })
+      method: 'PUT',
+      path: '/updateAccount',
+      config: {
+        auth: 'jwt',
+        
+      },
+      handler: controller.updateAccount
 
-    // server.route({
-    //   method: 'PUT',
-    //   path: '/task/{id}',
-    //   handler: controller.updateTask
-    // })
+    })
   },
   name: 'customer'
 }
