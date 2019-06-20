@@ -1,4 +1,5 @@
-const service = require('../../service/Product/ProductService')
+const service = require('../service/productService')
+const mongoose = require('mongoose')
 
 const getAllProducts = async () => {
   try{
@@ -11,7 +12,7 @@ const getAllProducts = async () => {
 
 const getProduct = async (req, h) =>{
   try{
-    const productID = req.payload._id
+    const productID = mongoose.Types.ObjectId(req.params.id) 
     return await service.getProduct(productID)
   }catch(error){
     console.log(error)
@@ -19,24 +20,7 @@ const getProduct = async (req, h) =>{
   }
 }
 
-const getAllCategory = async() =>{
-  try{
-    return await service.getAllCategory()
-  }catch(error){
-    return {error: "Get all category controller failed"}
-  }
-}
-
-const getCategory = async(categoryID) =>{
-  try{
-    return await service.getCategory(categoryID)
-  }catch(error){
-    return {error: "Get category controller failed"}
-  }
-}
-
 const createPizza = async(req, h) =>{
-  console.log("vao controller")
   const name = req.payload.name
   const start = req.payload.start
   const picture = req.payload.picture
@@ -45,17 +29,8 @@ const createPizza = async(req, h) =>{
   return await service.createPizza(name, start, picture, detail);
 }
 
-// const createCategoy = async(name, [id]) =>{
-//   return await service.createCategoy(name, [id])
-// }
-
-
-
 module.exports = {
   getAllProducts,
   getProduct,
-  getAllCategory,
-  getCategory,
-  createPizza,
-  // createCategoy,
+  createPizza
 }

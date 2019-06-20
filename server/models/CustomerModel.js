@@ -76,8 +76,7 @@ const findEmailByID = async (id) => {
 
 const findEmailAndUpdate = async (id, cusName, cusPasswordHashed) => {
   try{
-   let user = await Customer.find(
-    {"_id": id});
+   let user = await Customer.find({"_id": id});
     user[0].name = cusName;
     user[0].password = cusPasswordHashed
     return await user[0].save();

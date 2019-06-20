@@ -1,5 +1,5 @@
-const models = require('../../models/CustomerModel')
-const helper = require('../../helper/helper')
+const models = require('../models/customerModel')
+const helper = require('../helper/helper')
 
 
 const createAccount = async (cusEmail, cusName, cusPassword, cusRePassword) => { //, cusAddress, cusPhone) => {

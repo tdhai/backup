@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt')
 const saltRounds = 10;
 const jwt = require('jsonwebtoken')
 const privateKey = "abcd"
-const models = require('../models/CustomerModel')
+const models = require('../models/customerModel')
 const Boom = require('@hapi/boom')
 
 const hashPassword = (password) => {

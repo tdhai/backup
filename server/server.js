@@ -2,7 +2,7 @@
 
 const Hapi = require('@hapi/hapi')
 const mongoose = require('mongoose')
-const model = require('./models/CustomerModel')
+const model = require('./models/customerModel')
 
 
 const server = new Hapi.Server({
@@ -21,7 +21,7 @@ server.app.db = mongoose.connect(
 const validate = async function (decoded, request) {
   if (!model.findEmailByID(decoded.data)) {
     return { isValid: false };
-  }return {isValid: true} 
+  } return { isValid: true }
   // else {
   //   return { isValid: false };
   // }
@@ -32,15 +32,15 @@ const validate = async function (decoded, request) {
   //   console.log(error)
   //   return error
   // }
-  
+
 };
 
 const init = async () => {
   await server
     .register([
-      
+
       { plugin: require('hapi-auth-jwt2') }
-      
+
     ]);
 
   server.auth.strategy('jwt', 'jwt',
@@ -49,11 +49,12 @@ const init = async () => {
       validate: validate,            // validate function defined above
       verifyOptions: { algorithms: ['HS256'] } // pick a strong algorithm
     });
-    await server.register([
-      { plugin: require('./routes/Customer/CustomerRoutes') },
+  await server.register([
+    { plugin: require('./routes/customerRoute') },
 
-      { plugin: require('./routes/Product/ProductRoute') }
-    ])
+    { plugin: require('./routes/productRoute') },
+    { plugin: require('./routes/categoryRoute') }
+  ])
   // await console.log(validate)
   // server.auth.default('jwt');
 

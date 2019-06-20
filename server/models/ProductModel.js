@@ -2,16 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
 
-const ProductSchema = new Schema({
+const productSchema = new Schema({
   name: { type: String, required: true },
-  Detail: { type: String, required: true },
+  detail: { type: String, required: true },
   start: { type: Number, required: true },
   picture: { type: String, required: true }
-})
-
-const CategorySchema = new Schema({
-  name: {type: String, required: true},
-  productID: [{type: String, required: true}]
 })
 
 const getAllProducts = async () => {
@@ -34,61 +29,29 @@ const getProduct = async (productID) => {
   }
 }
 
-const createPizza = async(name, start, picture, detail) =>{
-  try{
+const createPizza = async (name, start, picture, detail) => {
+  try {
     console.log("vao model")
-  var product = new Product();
-  product.name = name;
-  product.start = start;
-  product.picture = picture;
-  product.detail = detail
-  // console.log(name, start, picture, detail)
-  // console.log(product.detail)
-  // console.log(product)
-  const a =  await product.save()
-  console.log(a)
-  return a
-  }catch(error){
+    var product = new Product();
+    product.name = name;
+    product.detail = detail;
+    product.start = start;
+    product.picture = picture;
+
+    console.log(name, start, picture, detail)
+    console.log(product.detail)
+    console.log(product)
+    return await product.save()
+  } catch (error) {
     return error
   }
 }
 
-const createCategoy = async(name, [id]) =>{
-  var category = new Category();
-  category.name = name;
-  category.productID = [id]
-  return await category.save();
-}
-
-const getCategory = async(categoryID) =>{
-  try{
-    return await Category.findOne({
-      '_id': categoryID
-    })
-  }catch(error){
-    return {error: "Get category fail"}
-  }
-}
-
-const getAllCategory= async() =>{
-  return await Category.find()
-}
-
-// const getProductByCategory = async() => {
-//   return Category.
-// }
-
-const Product = mongoose.model('product', ProductSchema)
-const Category = mongoose.model('category', CategorySchema)
+const Product = mongoose.model('product', productSchema)
 
 module.exports = {
   Product,
   getAllProducts,
   getProduct,
-  Category,
-  getCategory,
-  createCategoy,
   createPizza,
-  getAllCategory,
-  
 }

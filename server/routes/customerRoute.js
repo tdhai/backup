@@ -1,7 +1,7 @@
 'use strict'
 
 const mongoose = require('mongoose')
-const controller = require('../../controllers/Customer/CutomerController')
+const controller = require('../controllers/cutomerController')
 
 
 exports.plugin = {
