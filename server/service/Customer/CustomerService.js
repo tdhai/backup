@@ -53,13 +53,13 @@ const getCustomer = async (cusEmail, cusPassword) => {
   }
 }
 
-const updateAccount = async (token, cusName, cusPassword) => {
+const updateAccount = async (id, cusName, cusPassword) => {
   try {
-    console.log('da vao service')
-    // const checkToken = await helper.Authentication(token)
-    // console.log(checkToken)
-    // const tokenEmail = checkToken._id
-    return await models.findEmailAndUpdate(token, cusName, cusPassword)
+    if (!helper.checkPassword(cusPassword)) {
+      return { error: "Password does not have 8 symbols" }
+    }
+    const cusPasswordHashed = await helper.hashPassword(cusPassword);
+    return await models.findEmailAndUpdate(id, cusName, cusPasswordHashed)
   } catch (error) {
     console.log(error)
     return error;

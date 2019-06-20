@@ -16,7 +16,7 @@ exports.plugin = {
       method: 'POST',
       path: '/login',
       handler: controller.getCustomer
-    }),
+    })
 
     server.route({
       method: 'GET',
@@ -27,9 +27,8 @@ exports.plugin = {
     server.route({
       method: 'PUT',
       path: '/updateAccount',
-      config: {
-        auth: 'jwt',
-        
+      options: {
+        auth: 'jwt'
       },
       handler: controller.updateAccount
 

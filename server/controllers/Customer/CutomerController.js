@@ -36,19 +36,9 @@ const getCustomer = async (req, h) => {
 }
 const updateAccount = async(req, h) =>{
   try{
-    console.log('da vao update')
-    // const token = req.headers['authorization'];
     const cusName = req.payload.name
     const cusPassword = req.payload.password
-    // console.log(token, cusName, cusPassword)
-    // console.log(Response)
-    // const id = Response
-    // console.log(id)
-    const id =req.auth.credentials
-    console.log(req.auth.credentials)
-    console.log(req.auth)
-
-
+    const id = req.auth.credentials.data
     return await service.updateAccount(id, cusName, cusPassword);
   }catch(error){
     console.log(error)

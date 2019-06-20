@@ -6,7 +6,7 @@ const ProductSchema = new Schema({
   name: { type: String, required: true },
   Detail: { type: String, required: true },
   start: { type: Number, required: true },
-  picture: { type: String }
+  picture: { type: String, required: true }
 })
 
 const CategorySchema = new Schema({
@@ -35,12 +35,22 @@ const getProduct = async (productID) => {
 }
 
 const createPizza = async(name, start, picture, detail) =>{
+  try{
+    console.log("vao model")
   var product = new Product();
   product.name = name;
   product.start = start;
   product.picture = picture;
   product.detail = detail
-  return await product.save()
+  // console.log(name, start, picture, detail)
+  // console.log(product.detail)
+  // console.log(product)
+  const a =  await product.save()
+  console.log(a)
+  return a
+  }catch(error){
+    return error
+  }
 }
 
 const createCategoy = async(name, [id]) =>{

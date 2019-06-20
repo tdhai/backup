@@ -74,12 +74,17 @@ const findEmailByID = async (id) => {
   }
 }
 
-const findEmailAndUpdate = async (token, cusName, cusPassword) => {
-  console.log('da  vao model')
-  return await Customer.findOneAndUpdate(
-    { '_id': token },
-    { $set: [{ 'name': cusName }, {'password': cusPassword}] }
-  )
+const findEmailAndUpdate = async (id, cusName, cusPasswordHashed) => {
+  try{
+   let user = await Customer.find(
+    {"_id": id});
+    user[0].name = cusName;
+    user[0].password = cusPasswordHashed
+    return await user[0].save();
+  }catch(err){
+    console.log(err)
+    return err
+  }
 }
 
 module.exports = {

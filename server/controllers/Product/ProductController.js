@@ -35,15 +35,15 @@ const getCategory = async(categoryID) =>{
   }
 }
 
-// const createPizza = async(req, h) =>{
-//   console.log("abc")
-//   const name = req.payload.name
-//   const start = req.payload.start
-//   const picture = req.payload.picture
-//   const detail = req.payload.detail
-//   console.log(name, start, picture, detail)
-//   return await service.createPizza(name, start, picture, detail);
-// }
+const createPizza = async(req, h) =>{
+  console.log("vao controller")
+  const name = req.payload.name
+  const start = req.payload.start
+  const picture = req.payload.picture
+  const detail = req.payload.detail
+  // console.log(name, start, picture, detail)
+  return await service.createPizza(name, start, picture, detail);
+}
 
 // const createCategoy = async(name, [id]) =>{
 //   return await service.createCategoy(name, [id])
@@ -56,6 +56,6 @@ module.exports = {
   getProduct,
   getAllCategory,
   getCategory,
-  // createPizza,
+  createPizza,
   // createCategoy,
 }

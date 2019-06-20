@@ -30,11 +30,11 @@ exports.plugin = {
       handler: controller.getCategory
     })
 
-    // server.route({
-    //   method: 'POST',
-    //   path: '/createpizza',
-    //   handler: controller.createPizza
-    // })
+    server.route({
+      method: 'POST',
+      path: '/createpizza',
+      handler: controller.createPizza
+    })
 
     // server.route({
     //   method: 'POST',

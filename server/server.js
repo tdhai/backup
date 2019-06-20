@@ -3,6 +3,8 @@
 const Hapi = require('@hapi/hapi')
 const mongoose = require('mongoose')
 const model = require('./models/CustomerModel')
+
+
 const server = new Hapi.Server({
   host: 'localhost',
   port: 3000,
@@ -17,28 +19,28 @@ server.app.db = mongoose.connect(
 )
 
 const validate = async function (decoded, request) {
-  // if (![decoded._id]) {
+  if (!model.findEmailByID(decoded.data)) {
+    return { isValid: false };
+  }return {isValid: true} 
+  // else {
   //   return { isValid: false };
   // }
-  // else {
-  //   return { isValid: true };
+  // console.log(decoded)
+  // try {
+  //   return await decoded.data
+  // } catch (error) {
+  //   console.log(error)
+  //   return error
   // }
-  try{
-    return await decoded.data
-  }catch(error){
-    console.log(error)
-    return error
-  }
+  
 };
 
 const init = async () => {
   await server
     .register([
-      { plugin: require('hapi-auth-jwt2') },
-      { plugin: require('./routes/Customer/CustomerRoutes') },
       
-
-      { plugin: require('./routes/Product/ProductRoute') }
+      { plugin: require('hapi-auth-jwt2') }
+      
     ]);
 
   server.auth.strategy('jwt', 'jwt',
@@ -47,8 +49,13 @@ const init = async () => {
       validate: validate,            // validate function defined above
       verifyOptions: { algorithms: ['HS256'] } // pick a strong algorithm
     });
+    await server.register([
+      { plugin: require('./routes/Customer/CustomerRoutes') },
+
+      { plugin: require('./routes/Product/ProductRoute') }
+    ])
   // await console.log(validate)
-  server.auth.default('jwt');
+  // server.auth.default('jwt');
 
   // await Promise.all()
   // .catch(err => {

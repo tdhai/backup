@@ -34,9 +34,10 @@ const getCategory = async(categoryID) =>{
   }
 }
 
-// const createPizza = async(name, start, picture, detail) =>{
-//   return await model.createPizza(name, start, picture, detail);
-// }
+const createPizza = async(name, start, picture, detail) =>{
+  console.log("vao service")
+  return await model.createPizza(name, start, picture, detail);
+}
 
 // const createCategoy = async(name, [id]) =>{
 //   return await model.createCategoy(name, [id])
@@ -49,5 +50,5 @@ module.exports = {
   getAllCategory,
   getCategory,
   // createCategoy,
-  // createPizza
+  createPizza
 }
