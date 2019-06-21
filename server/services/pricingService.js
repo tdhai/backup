@@ -20,6 +20,7 @@ const getPricinges = async () => {
 
 const getPricing = async (productID, type, size) => {
   try{
+    console.log(productID, type, size)
     return await model.getPricing(productID, type, size)
   }catch (error) {
     console.log(error)

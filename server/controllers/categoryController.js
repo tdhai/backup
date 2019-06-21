@@ -5,7 +5,8 @@ const getAllCategory = async () => {
   try {
     return await service.getAllCategory()
   } catch (error) {
-    return { error: "Get all category controller failed" }
+    return { message: "Get all category controller failed",
+   error}
   }
 }
 
@@ -20,9 +21,13 @@ const getCategory = async (req, h) => {
 }
 
 const createCategory = async (req, h) => {
+ try{
   const name = req.payload.name
   const id = req.payload.productID
   return await service.createCategory(name, id)
+ }catch(error){
+   console.log(error)
+ }
 }
 
 module.exports = {

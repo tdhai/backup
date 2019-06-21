@@ -9,10 +9,10 @@ const createPricing = async (req, h) => {
     const price = req.payload.price
     return await servive.creatPricing(productID, type, size, price)
   } catch (error) {
-    console.log(error)
-    return error
+    console.log( error)
   }
 }
+
 
 const getPricinges = async () => {
   return await servive.getPricinges()
@@ -26,7 +26,6 @@ const getPricing = async (req, h) => {
     return await servive.getPricing(productID, type, size)
   } catch (error) {
     console.log(error)
-    return error
   }
 }
 

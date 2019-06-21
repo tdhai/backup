@@ -3,7 +3,8 @@ const Schema = mongoose.Schema
 
 
 const pricingSchema = new Schema({
-  productID: { type: String, required: true },
+  // productID: { type: String, required: true },
+  productID: { type: Schema.Types.ObjectId, ref: "product", required: true },
   size: { type: String, required: true },
   type: { type: String, required: true },
   price: { type: Number, required: true }

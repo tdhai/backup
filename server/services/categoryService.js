@@ -4,7 +4,7 @@ const getAllCategory = async () => {
   try {
     return await model.getAllCategory()
   } catch (error) {
-    return { error: "Get all category controller failed" }
+    return { message: "Get category controller failed",error }
   }
 }
 
@@ -12,12 +12,20 @@ const getCategory = async (categoryID) => {
   try {
     return await model.getCategory(categoryID)
   } catch (error) {
-    return { error: "Get category controller failed" }
+    return { message: "Get category controller failed",error }
   }
 }
 
 const createCategory = async (name, id) => {
-  return await model.createCategoy(name, id)
+  try{
+    
+    console.log(name, id)
+    return await model.createCategoy(name, id)
+  }catch(error){
+    console.log(error)
+    throw(error)
+  }
+  
 }
 
 
