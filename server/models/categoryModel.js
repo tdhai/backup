@@ -14,23 +14,22 @@ const createCategoy = async (name, id) => {
 }
 
 const getCategory = async (categoryID) => {
-  // try {
-  //   const category = await Category.findOne({ '_id': categoryID })
-  //   category.productID
-  // } catch (error) {
-  //   return { error: "Get category fail" }
-  // }
-  console.log("moddel")
-  Category.findOne({ '_id': categoryID })
-    .populate({
-      path: 'product',
-      match: { productID: { $eq: _id } }
-    }
-    )
-  exec(function (err, category) {
-    if (err) return handleError(err);
-    console.log(category);
-  })
+  try {
+    return await Category.findOne({ '_id': categoryID })
+  } catch (error) {
+    return { error: "Get category fail" }
+  }
+  // console.log("moddel")
+  // Category.findOne({ '_id': categoryID })
+  //   .populate({
+  //     path: 'product',
+  //     match: { productID: { $eq: _id } }
+  //   }
+  //   )
+  // exec(function (err, category) {
+  //   if (err) return handleError(err);
+  //   console.log(category);
+  // })
 }
 
 const getAllCategory = async () => {

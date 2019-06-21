@@ -1,4 +1,4 @@
-const service = require('../service/productService')
+const service = require('../services/productService')
 const mongoose = require('mongoose')
 
 const getAllProducts = async () => {

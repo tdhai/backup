@@ -53,7 +53,8 @@ const init = async () => {
     { plugin: require('./routes/customerRoute') },
 
     { plugin: require('./routes/productRoute') },
-    { plugin: require('./routes/categoryRoute') }
+    { plugin: require('./routes/categoryRoute') },
+    {plugin: require('./routes/pricingRoute')}
   ])
   // await console.log(validate)
   // server.auth.default('jwt');

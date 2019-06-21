@@ -1,4 +1,4 @@
-const service = require('../service/categoryService')
+const service = require('../services/categoryService')
 const mongoose = require('mongoose')
 
 const getAllCategory = async () => {

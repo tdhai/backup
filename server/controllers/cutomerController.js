@@ -1,4 +1,4 @@
-const service = require('../service/customerService')
+const service = require('../services/customerService')
 
 const createAccount = async (req, h) => {
   try {

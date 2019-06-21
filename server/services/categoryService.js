@@ -10,7 +10,6 @@ const getAllCategory = async () => {
 
 const getCategory = async (categoryID) => {
   try {
-    console.log("service")
     return await model.getCategory(categoryID)
   } catch (error) {
     return { error: "Get category controller failed" }
