@@ -20,17 +20,20 @@ const getProduct = async (req, h) =>{
   }
 }
 
-const createPizza = async(req, h) =>{
+const createProduct = async(req, h) =>{
   const name = req.payload.name
   const start = req.payload.start
   const picture = req.payload.picture
   const detail = req.payload.detail
-  // console.log(name, start, picture, detail)
-  return await service.createPizza(name, start, picture, detail);
+  const size = req.payload.size
+  const type = req.payload.type
+  const price = req.payload.price
+  console.log(name, start, picture, detail, size, type, price)
+  return await service.createProduct(name, start, picture, detail, size, type, price);
 }
 
 module.exports = {
   getAllProducts,
   getProduct,
-  createPizza
+  createProduct
 }

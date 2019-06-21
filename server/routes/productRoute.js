@@ -19,8 +19,8 @@ exports.plugin = {
 
     server.route({
       method: 'POST',
-      path: '/createpizza',
-      handler: controller.createPizza
+      path: '/createProduct',
+      handler: controller.createProduct
     })
   },
   name: 'product'

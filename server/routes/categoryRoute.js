@@ -19,7 +19,7 @@ exports.plugin = {
 
     server.route({
       method: 'POST',
-      path: '/createcategory',
+      path: '/createCategory',
       handler: controller.createCategory
     })
   },

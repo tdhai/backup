@@ -4,6 +4,7 @@ const Schema = mongoose.Schema
 const categorySchema = new Schema({
   name: { type: String, required: true },
   productID: [{ type: Schema.Types.ObjectId, ref: "product", required: true }]
+  // productID: [{ type: String, ref: "product", required: true }]
 })
 
 const createCategoy = async (name, id) => {
@@ -20,7 +21,7 @@ const createCategoy = async (name, id) => {
 
 const getCategory = async (categoryID) => {
   try {
-    return await Category.findOne({ '_id': categoryID })
+    return await Category.findOne({ '_id': categoryID }).populate('productID')
   } catch (error) {
     return { error: "Get category fail" }
   }
@@ -38,7 +39,7 @@ const getCategory = async (categoryID) => {
 }
 
 const getAllCategory = async () => {
-  return await Category.find().populate(ObjectId.productID)
+  return await Category.find().populate('productID')
 }
 
 const Category = mongoose.model('category', categorySchema)

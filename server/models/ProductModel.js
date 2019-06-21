@@ -5,8 +5,11 @@ const Schema = mongoose.Schema
 const productSchema = new Schema({
   name: { type: String, required: true },
   detail: { type: String, required: true },
+  picture: { type: String, required: true },
   start: { type: Number, required: true },
-  picture: { type: String, required: true }
+  size: { type: String, required: true },
+  type: { type: String, required: true },
+  price: { type: Number, required: true }
 })
 
 const getAllProducts = async () => {
@@ -29,7 +32,7 @@ const getProduct = async (productID) => {
   }
 }
 
-const createPizza = async (name, start, picture, detail) => {
+const createProduct = async (name, start, picture, detail, size, type, price) => {
   try {
     console.log("vao model")
     var product = new Product();
@@ -37,10 +40,11 @@ const createPizza = async (name, start, picture, detail) => {
     product.detail = detail;
     product.start = start;
     product.picture = picture;
+    product.type = type;
+    product.size = size
+    product.price = price
+    
 
-    console.log(name, start, picture, detail)
-    console.log(product.detail)
-    console.log(product)
     return await product.save()
   } catch (error) {
     return error
@@ -53,5 +57,5 @@ module.exports = {
   Product,
   getAllProducts,
   getProduct,
-  createPizza,
+  createProduct,
 }

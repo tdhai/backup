@@ -5,8 +5,7 @@ const getAllCategory = async () => {
   try {
     return await service.getAllCategory()
   } catch (error) {
-    return { message: "Get all category controller failed",
-   error}
+    return { message: "Get all category controller failed", error}
   }
 }
 
@@ -23,7 +22,8 @@ const getCategory = async (req, h) => {
 const createCategory = async (req, h) => {
  try{
   const name = req.payload.name
-  const id = req.payload.productID
+  const id = req.payload.productID 
+  console.log("controller",name, id)
   return await service.createCategory(name, id)
  }catch(error){
    console.log(error)

@@ -18,12 +18,12 @@ const getProduct = async(productID) => {
   }
 }
 
-const createPizza = async(name, start, picture, detail) =>{
-  return await model.createPizza(name, start, picture, detail);
+const createProduct = async(name, start, picture, detail, size, type, price) =>{
+  return await model.createProduct(name, start, picture, detail, size, type, price);
 }
 
 module.exports = {
   getAllProducts,
   getProduct,
-  createPizza
+  createProduct
 }
