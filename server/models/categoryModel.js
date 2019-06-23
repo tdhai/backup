@@ -25,17 +25,6 @@ const getCategory = async (categoryID) => {
   } catch (error) {
     return { error: "Get category fail" }
   }
-  // console.log("moddel")
-  // Category.findOne({ '_id': categoryID })
-  //   .populate({
-  //     path: 'product',
-  //     match: { productID: { $eq: _id } }
-  //   }
-  //   )
-  // exec(function (err, category) {
-  //   if (err) return handleError(err);
-  //   console.log(category);
-  // })
 }
 
 const getAllCategory = async () => {

@@ -1,0 +1,82 @@
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+
+const orderSchema = new Schema({
+  customerID: { type: Schema.Types.ObjectId, ref: "customer", required: true },
+  address: { type: String, required: true },
+  phone: { type: String, required: true },
+  date: { type: Date, required: true },
+  totalPrice: { type: Number, required: true },
+  orderDetail: [{
+    productID: { type: Schema.Types.ObjectId, ref: 'product', required: true },
+    quantity: { type: Number, require: true },
+    topping: [{ type: Schema.Types.ObjectId, ref: 'topping', require: true }]
+  }]
+})
+
+const totalPrice = () => {
+  Order.orderDetail.productID.price * Order.orderDetail.quantity + Order.orderDetail.topping.price
+}
+
+const createOrder = async (customerID, address, phone, date, totalPrice, productID, quantity, topping) => {
+  try {
+    var order = new Order();
+    order.customerID = customerID;
+    order.address = address;
+    order.phone = phone;
+    order.date = date;
+    order = totalPrice;
+    orderDetail = productID;
+    orderDetail = quantity;
+    orderDetail = topping;
+    return await order.save()
+  } catch (error) {
+    throw ("Create order model", error)
+  }
+}
+
+const getOrder = async () => {
+  try{
+    return await Order.find()
+  }catch(error){
+    throw {error: "get order model"}
+  }
+}
+
+const Order = mongoose.model('order', orderSchema)
+
+module.exports = {
+  Order,
+  createOrder,
+  totalPrice,
+  getOrder,
+  
+}
+
+
+// const orderSchema = new Schema({
+
+//   //em ví dụ đây là cliet gửi lên cho mình
+//   customerID: 123,
+//   address: 123,
+//   phone: 123,
+//   date: 12/12/2016,
+//   totalPrice: 100,
+//   orderDetail: [{
+//     productID:  1 , // nó referent tới collection "product" 
+//     quantity: 3,
+//     topping: "abc123", "abc555"
+//   },
+//   {
+//     productID:  5 ,// referent tới collection "topping"
+//     quantity: 1,
+//     topping: ttt
+//   }
+// ]
+// })
+
+// //đay là e se tính được total price để so sanh
+// //nếu so sánh bằng tất là đúng se cho nó tạo order
+// const totalPrice = ()=>{
+//   Order.orderDetail.productID.price * Order.orderDetail.quantity + Order.orderDetail.topping.price  
+// }
