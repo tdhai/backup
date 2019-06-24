@@ -2,13 +2,13 @@
 require('dotenv').config()
 const Hapi = require('@hapi/hapi')
 const mongoose = require('mongoose')
-const model = require('./models/CustomerModel')
+const model = require('./models/customerModel')
 const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
 const server = new Hapi.Server({
   host: 'localhost',
-  // port: 5000,
+  // port: 3000,
   port:  process.env.PORT || 3000,
   routes: {
     cors: true
@@ -16,8 +16,8 @@ const server = new Hapi.Server({
 })
 
 server.app.db = mongoose.connect(
-  // 'mongodb://localhost/pizza',
-  'mongodb+srv://hai1405:hai1405@pizza-apifw.mongodb.net/pizza?retryWrites=true&w=majority',
+  'mongodb://localhost/pizza',
+  // 'mongodb+srv://hai1405:hai1405@pizza-apifw.mongodb.net/pizza?retryWrites=true&w=majority',
   { useNewUrlParser: true }
 )
 
