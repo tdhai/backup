@@ -8,8 +8,8 @@ const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
 const server = new Hapi.Server({
   host: 'localhost',
-  port: 5000,
-  // port:  process.env.PORT || 3000,
+  // port: 5000,
+  port:  process.env.PORT || 3000,
   routes: {
     cors: true
   }
