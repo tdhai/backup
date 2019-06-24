@@ -1,8 +1,11 @@
 const model = require('../models/orderModel')
 
-const createOrder = async (customerID, address, phone, date, totalPrice, productID, quantity, topping) => {
+const createOrder = async (customerID, address, phone, date, totalPrice, orderDetail) => {
   try {
-    return await model.createOrder(customerID, address, phone, date, totalPrice, productID, quantity, topping)
+    // const a = await model.totalPrice()
+    // console.log(a)
+    // console.log(customerID, address, phone, date, totalPrice, orderDetail)
+    return await model.createOrder(customerID, address, phone, date, totalPrice, orderDetail)
   } catch (error) {
     throw ("create order service", error)
   }

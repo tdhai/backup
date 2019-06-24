@@ -18,17 +18,20 @@ const totalPrice = () => {
   Order.orderDetail.productID.price * Order.orderDetail.quantity + Order.orderDetail.topping.price
 }
 
-const createOrder = async (customerID, address, phone, date, totalPrice, productID, quantity, topping) => {
+const createOrder = async (customerID, address, phone, date, totalPrice, orderDetail) => {
   try {
     var order = new Order();
     order.customerID = customerID;
     order.address = address;
     order.phone = phone;
     order.date = date;
-    order = totalPrice;
-    orderDetail = productID;
-    orderDetail = quantity;
-    orderDetail = topping;
+    order.totalPrice = totalPrice;
+    // orderDetail = productID;
+    // orderDetail = quantity;
+    // orderDetail = topping;
+    order.orderDetail = orderDetail
+
+    // console.log(customerID, address, phone, date, totalPrice, orderDetail)
     return await order.save()
   } catch (error) {
     throw ("Create order model", error)
@@ -37,9 +40,9 @@ const createOrder = async (customerID, address, phone, date, totalPrice, product
 
 const getOrder = async () => {
   try {
-    return await Order.find()
+    return await Order.find().populate('customerID').populate('orderDetail.productID').populate('orderDetail.topping')
   } catch (error) {
-    throw { error: "get order model" }
+    throw { error: "get order model fail" }
   }
 }
 
