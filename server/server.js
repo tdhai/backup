@@ -2,7 +2,7 @@
 require('dotenv').config()
 const Hapi = require('@hapi/hapi')
 const mongoose = require('mongoose')
-const model = require('./models/customerModel')
+const model = require('./models/CustomerModel')
 const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');

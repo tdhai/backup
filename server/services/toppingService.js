@@ -1,4 +1,4 @@
-const model = require('../models/toppingModel')
+const model = require('../models/ToppingModel')
 
 const getAllTopping = async () => {
   return await model.getAllTopping();

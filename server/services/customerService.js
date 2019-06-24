@@ -1,4 +1,4 @@
-const models = require('../models/customerModel')
+const models = require('../models/CustomerModel')
 const helper = require('../helper/helper')
 
 
