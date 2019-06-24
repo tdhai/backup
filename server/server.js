@@ -6,7 +6,6 @@ const model = require('./models/customerModel')
 const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
-
 const server = new Hapi.Server({
   host: 'localhost',
   // port: 3000,
