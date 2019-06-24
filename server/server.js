@@ -1,5 +1,5 @@
 'use strict'
-
+require('dotenv').config()
 const Hapi = require('@hapi/hapi')
 const mongoose = require('mongoose')
 const model = require('./models/customerModel')
@@ -10,7 +10,7 @@ const HapiSwagger = require('hapi-swagger');
 const server = new Hapi.Server({
   host: 'localhost',
   // port: 3000,
-  port: process.env.PORT || 3000,
+  port:  process.env.PORT || 3000,
   routes: {
     cors: true
   }
