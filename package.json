@@ -4,12 +4,11 @@
   "description": "OrderPizza",
   "main": "index.js",
   "scripts": {
-    
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tdhai/OrderPizzaPyco"
+    "url": "git+https://github.com/tdhai/OrderPizzaPyco.git"
   },
   "author": "",
   "license": "ISC",
@@ -27,5 +26,6 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.6.0",
     "nodemon": "^1.19.1"
-  }
+  },
+  "devDependencies": {}
 }
