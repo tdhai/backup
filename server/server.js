@@ -8,16 +8,16 @@ const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
 const server = new Hapi.Server({
   host: 'localhost',
-  // port: 3000,
-  port:  process.env.PORT || 3000,
+  port: 5000,
+  // port:  process.env.PORT || 3000,
   routes: {
     cors: true
   }
 })
 
 server.app.db = mongoose.connect(
-  // 'mongodb://localhost/pizza',
-  'mongodb+srv://hai1405:hai1405@pizza-apifw.mongodb.net/pizza?retryWrites=true&w=majority',
+  'mongodb://localhost/pizza',
+  // 'mongodb+srv://hai1405:hai1405@pizza-apifw.mongodb.net/pizza?retryWrites=true&w=majority',
   { useNewUrlParser: true }
 )
 
