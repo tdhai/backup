@@ -9,7 +9,8 @@ const HapiSwagger = require('hapi-swagger');
 
 const server = new Hapi.Server({
   host: 'localhost',
-  port: 3000,
+  // port: 3000,
+  port: process.env.PORT || 3000,
   routes: {
     cors: true
   }
