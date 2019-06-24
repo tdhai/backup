@@ -3,7 +3,9 @@
 const Hapi = require('@hapi/hapi')
 const mongoose = require('mongoose')
 const model = require('./models/customerModel')
-
+const Inert = require('@hapi/inert');
+const Vision = require('@hapi/vision');
+const HapiSwagger = require('hapi-swagger');
 
 const server = new Hapi.Server({
   host: 'localhost',
@@ -36,6 +38,12 @@ const validate = async function (decoded, request) {
 
 };
 
+const swaggerOptions = {
+  info: {
+    title: 'Test API Documentation'
+  },
+};
+
 const init = async () => {
   await server
     .register([
@@ -56,7 +64,13 @@ const init = async () => {
     { plugin: require('./routes/productRoute') },
     { plugin: require('./routes/categoryRoute') },
     { plugin: require('./routes/toppingRoute') },
-    { plugin: require('./routes/orderRoute') }
+    { plugin: require('./routes/orderRoute') },
+    Inert,
+    Vision,
+    {
+      plugin: HapiSwagger,
+      options: swaggerOptions
+    }
   ])
   // await console.log(validate)
   // server.auth.default('jwt');

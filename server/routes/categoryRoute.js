@@ -1,6 +1,7 @@
 'use strict'
 
 const controller = require('../controllers/categoryController')
+const Joi = require('@hapi/joi');
 
 
 exports.plugin = {
@@ -8,13 +9,28 @@ exports.plugin = {
     server.route({
       method: 'GET',
       path: '/categories',
-      handler: controller.getAllCategory
+      options: {
+        handler: controller.getAllCategory,
+        tags: ['api'], // ADD THIS TAG
+        description: 'Get all category have products'
+      }
     }),
 
       server.route({
         method: 'GET',
         path: '/category/{id}',
-        handler: controller.getCategory
+        options: {
+          handler: controller.getCategory,
+          tags: ['api'], // ADD THIS TAG
+          description: 'Get category by id have products',
+          validate: {
+            params: {
+              id: Joi.string().min(3).max(50)
+                // .required()
+                // .description('the id for the todo item'),
+            }
+          }
+        }
       })
 
     server.route({
