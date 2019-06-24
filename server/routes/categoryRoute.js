@@ -6,13 +6,7 @@ const Joi = require('@hapi/joi');
 
 exports.plugin = {
   register: (server, option) => {
-    server.route([{
-      method: 'GET',
-        path: '/',
-        handler: async (request, h) =>{
-          return `OK Hello WOrld!`
-        }
-    },{
+    server.route({
       method: 'GET',
       path: '/categories',
       options: {
@@ -20,7 +14,7 @@ exports.plugin = {
         tags: ['api'], // ADD THIS TAG
         description: 'Get all category have products'
       }
-    }]),
+    }),
 
       server.route({
         method: 'GET',

@@ -6,10 +6,12 @@ const productSchema = new Schema({
   name: { type: String, required: true },
   detail: { type: String, required: true },
   picture: { type: String, required: true },
-  start: { type: Number, required: true },
-  size: { type: String, required: true },
-  type: { type: String, required: true },
-  price: { type: Number, required: true }
+  star: { type: Number, required: true },
+  pricing: [{
+    size: { type: String, required: true },
+    type: { type: String, required: true },
+    price: { type: Number, required: true }
+  }]
 })
 
 const getAllProducts = async () => {
@@ -32,17 +34,15 @@ const getProduct = async (productID) => {
   }
 }
 
-const createProduct = async (name, start, picture, detail, size, type, price) => {
+const createProduct = async (name, star, picture, detail, pricing) => {
   try {
     console.log("vao model")
     var product = new Product();
     product.name = name;
     product.detail = detail;
-    product.start = start;
+    product.star = star;
     product.picture = picture;
-    product.type = type;
-    product.size = size
-    product.price = price
+    product.pricing = pricing;
     
 
     return await product.save()
