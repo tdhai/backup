@@ -15,7 +15,7 @@ const orderSchema = new Schema({
 })
 
 const totalPrice = async () => {
-  // Order.orderDetail.productID.price * Order.orderDetail.quantity + Order.orderDetail.topping.price
+// Order.orderDetail.productID.price * Order.orderDetail.quantity + Order.orderDetail.topping.pricea
   return await Order.orderDetail.reduce(async (total, orderDetail) =>{
       return await total + orderDetail.productId.price * orderDetail.quantity + orderDetail.topping.reduce(async (total, listTopping) =>{
             return await total + listTopping 

@@ -13,7 +13,7 @@ const productSchema = new Schema({
     price: { type: Number, required: true }
   }]
 })
-
+//a
 const getAllProducts = async () => {
   try {
     return await Product.find()

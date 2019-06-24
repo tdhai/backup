@@ -4,9 +4,8 @@ const Schema = mongoose.Schema
 const categorySchema = new Schema({
   name: { type: String, required: true },
   productID: [{ type: Schema.Types.ObjectId, ref: "product", required: true }]
-  // productID: [{ type: String, ref: "product", required: true }]
+  // productID: [{ type: String, ref: "product", required: true }]a
 })
-
 const createCategoy = async (name, id) => {
   try {
     var category = new Category();
