@@ -33,6 +33,13 @@ const createOrder = async (req, h) => {
     //     ]
     // }
 
+    //lỗi
+  //   {
+  //     "statusCode": 400,
+  //     "error": "Bad Request",
+  //     "message": "Invalid request payload JSON format"
+  // }
+
     return await service.createOrder(customerID, address, phone, date, totalPrice, productID, quantity, topping)
   } catch (error) {
     throw ("create order service", error)
