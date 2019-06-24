@@ -7,7 +7,8 @@
 #Describe API
 
 | Localhost                   | Method      | Describe      
-| --------------------------- | ----------- | --- 
+| --------------------------- | ----------- | ---
+#category
 | localhost:3000/category/{id}| Method: GET | Get category by ID(lấy sản phẩm có cùng id, client trả về ID của category)
 | localhost:3000/categories   | Method: GET | Get all categories(lấy toàn bộ category có những sản phẩm nào)
 
