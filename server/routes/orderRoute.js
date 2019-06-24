@@ -16,6 +16,8 @@ exports.plugin = {
       path: '/orders',
       handler: controller.getOrder
     })
+
+    
   },
   name: 'order'
 }

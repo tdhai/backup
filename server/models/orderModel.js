@@ -36,10 +36,10 @@ const createOrder = async (customerID, address, phone, date, totalPrice, product
 }
 
 const getOrder = async () => {
-  try{
+  try {
     return await Order.find()
-  }catch(error){
-    throw {error: "get order model"}
+  } catch (error) {
+    throw { error: "get order model" }
   }
 }
 
@@ -50,7 +50,7 @@ module.exports = {
   createOrder,
   totalPrice,
   getOrder,
-  
+
 }
 
 
