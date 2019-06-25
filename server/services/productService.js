@@ -18,8 +18,8 @@ const getProduct = async(productID) => {
   }
 }
 
-const createProduct = async(name, star, picture, detail, pricing) =>{
-  return await model.createProduct(name, star, picture, detail, pricing);
+const createProduct = async(name, star, picture, detail, size, type, price) =>{
+  return await model.createProduct(name, star, picture, detail, size, type, price);
 }
 
 module.exports = {

@@ -10,16 +10,17 @@ const createOrder = async (req, h) => {
     
     orderDetail = req.payload.orderDetail
 
-    // console.log(customerID, address, phone, date, totalPrice, orderDetail)
+    // console.log("order detail controller" ,orderDetail)
     return await service.createOrder(customerID, address, phone, date, totalPrice, orderDetail)
   } catch (error) {
     throw ("create order service", error)
   }
 }
 
-const getOrder = async () => {
+const getOrder = async (req, h) => {
   try {
-    return await service.getOrder()
+    const customerID = req.auth.credentials.data
+    return await service.getOrder(customerID)
   } catch (error) {
     throw ("get order controller", error)
   }

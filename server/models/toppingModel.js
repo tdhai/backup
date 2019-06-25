@@ -19,10 +19,11 @@ const getAllTopping = async() =>{
   return await Topping.find();
 }
 
-const getTopping = async(name)=>{
-  return await Topping.findOne({
-    "_id": name
+const getToppingByID = async(ids)=>{
+  const topping = await Topping.find({
+    "_id": {$in: ids}
   })
+  return topping
 }
 
 const Topping = mongoose.model('topping', toppingSchema)
@@ -30,6 +31,7 @@ const Topping = mongoose.model('topping', toppingSchema)
 module.exports = {
   Topping,
   getAllTopping,
-  getTopping,
+  getToppingByID,
   createTopping
 }
+module.exports.theToppingModel = Topping;

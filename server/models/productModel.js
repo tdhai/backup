@@ -7,11 +7,9 @@ const productSchema = new Schema({
   detail: { type: String, required: true },
   picture: { type: String, required: true },
   star: { type: Number, required: true },
-  pricing: [{
-    size: { type: String, required: true },
-    type: { type: String, required: true },
-    price: { type: Number, required: true }
-  }]
+  size: { type: String, required: true },
+  type: { type: String, required: true },
+  price: { type: Number, required: true }
 })
 //a
 const getAllProducts = async () => {
@@ -27,22 +25,16 @@ const getProduct = async (productID) => {
   try {
     console.log(productID)
     return await Product.find({
-      '_id': productID,
-      // 'pricing.size': 'M',
-      // 'pricing.type': 'Thin'
-      // 'size': 'M'
-    },
-      // { 'size': 'M' },
-      // { 'type': 'Thin' }
-      // // {'pricing.type': 'Thin'}
-
-  )} catch (error) {
+      '_id': productID
+    }
+    )
+  } catch (error) {
     console.log(error)
     return error;
   }
 }
 
-const createProduct = async (name, star, picture, detail, pricing) => {
+const createProduct = async (name, star, picture, detail, size, type, price) => {
   try {
     console.log("vao model")
     var product = new Product();
@@ -50,9 +42,10 @@ const createProduct = async (name, star, picture, detail, pricing) => {
     product.detail = detail;
     product.star = star;
     product.picture = picture;
-    product.pricing = pricing;
-    
-
+    // product.pricing = pricing;
+    product.size = size;
+    product.type = type;
+    product.price = price;
     return await product.save()
   } catch (error) {
     return error

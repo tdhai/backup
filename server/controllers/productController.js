@@ -25,9 +25,12 @@ const createProduct = async(req, h) =>{
   const star = req.payload.star
   const picture = req.payload.picture
   const detail = req.payload.detail
-  const pricing = req.payload.pricing
-  console.log(name, star, picture, detail, pricing)
-  return await service.createProduct(name, star, picture, detail, pricing);
+  // const pricing = req.payload.pricing
+  const size = req.payload.size
+  const type = req.payload.type
+  const price = req.payload.price
+  // console.log(name, star, picture, detail, pricing)
+  return await service.createProduct(name, star, picture, detail, size, type, price);
 }
 
 module.exports = {

@@ -14,6 +14,9 @@ exports.plugin = {
     server.route({
       method: 'GET',
       path: '/orders',
+      options: {
+        auth: 'jwt'
+      },
       handler: controller.getOrder
     })
 
