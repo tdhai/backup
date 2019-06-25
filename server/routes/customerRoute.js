@@ -6,7 +6,12 @@ const controller = require('../controllers/cutomerController')
 
 exports.plugin = {
   register: (server, option) => {
-    server.route({
+    server.route(
+      {
+        method: 'GET',
+        path: '/',
+        handler: function(req, res){ return 'heroku'}
+      },{ 
       method: 'POST',
       path: '/register',
       handler: controller.createAccount
