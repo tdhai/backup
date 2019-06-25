@@ -80,7 +80,7 @@ const init = async () => {
   //   console.log(err);
   // })
   await server.start()
-  console.log(`Server running at: ${server.info.uri}`)
+  console.log(`Server running at on heroku: ${server.info.uri}`)
   // console.log("started");
 }
 
