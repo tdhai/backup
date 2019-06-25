@@ -12,6 +12,13 @@ exports.plugin = {
         path: '/',
         handler: function(req, res){ return 'heroku1'}
        });
+
+       server.route(
+        {
+          method: 'GET',
+          path: '/favicon.ico',
+          handler: function(req, res){ return 'favicon.ico'}
+         });
   },
   name: 'customer'
 }

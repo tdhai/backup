@@ -25,10 +25,18 @@ const getAllProducts = async () => {
 
 const getProduct = async (productID) => {
   try {
-    return await Product.findOne({
-      '_id': productID
-    })
-  } catch (error) {
+    console.log(productID)
+    return await Product.find({
+      '_id': productID,
+      // 'pricing.size': 'M',
+      // 'pricing.type': 'Thin'
+      // 'size': 'M'
+    },
+      // { 'size': 'M' },
+      // { 'type': 'Thin' }
+      // // {'pricing.type': 'Thin'}
+
+  )} catch (error) {
     console.log(error)
     return error;
   }
