@@ -16,6 +16,12 @@ exports.plugin = {
       }
     }),
 
+    server.route({
+      method: 'GET',
+      path: '/',
+      handler: function(){return Wellcom to Pizza Order Hai Truong}
+    }),
+
       server.route({
         method: 'GET',
         path: '/category/{id}',
