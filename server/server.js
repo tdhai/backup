@@ -45,32 +45,32 @@ const swaggerOptions = {
 };
 
 const init = async () => {
-  await server
-    .register([
+  // await server
+  //   .register([
 
-      { plugin: require('hapi-auth-jwt2') }
+  //     { plugin: require('hapi-auth-jwt2') }
 
-    ]);
+  //   ]);
 
-  server.auth.strategy('jwt', 'jwt',
-    {
-      key: 'abcd',          // Never Share your secret key
-      validate: validate,            // validate function defined above
-      verifyOptions: { algorithms: ['HS256'] } // pick a strong algorithm
-    });
+  // server.auth.strategy('jwt', 'jwt',
+  //   {
+  //     key: 'abcd',          // Never Share your secret key
+  //     validate: validate,            // validate function defined above
+  //     verifyOptions: { algorithms: ['HS256'] } // pick a strong algorithm
+  //   });
   await server.register([
     { plugin: require('./routes/customerRoute') },
 
-    { plugin: require('./routes/productRoute') },
-    { plugin: require('./routes/categoryRoute') },
-    { plugin: require('./routes/toppingRoute') },
-    { plugin: require('./routes/orderRoute') },
-    Inert,
-    Vision,
-    {
-      plugin: HapiSwagger,
-      options: swaggerOptions
-    }
+    // { plugin: require('./routes/productRoute') },
+    // { plugin: require('./routes/categoryRoute') },
+    // { plugin: require('./routes/toppingRoute') },
+    // { plugin: require('./routes/orderRoute') },
+    // Inert,
+    // Vision,
+    // {
+    //   plugin: HapiSwagger,
+    //   options: swaggerOptions
+    // }
   ])
   // await console.log(validate)
   // server.auth.default('jwt');
