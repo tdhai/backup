@@ -32,8 +32,6 @@ exports.plugin = {
           validate: {
             params: {
               id: Joi.string().min(3).max(50)
-                // .required()
-                // .description('the id for the todo item'),
             }
           }
         }
@@ -41,7 +39,7 @@ exports.plugin = {
 
     server.route({
       method: 'POST',
-      path: '/createCategory',
+      path: '/category',
       handler: controller.createCategory
     })
   },

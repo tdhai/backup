@@ -9,13 +9,21 @@ exports.plugin = {
     server.route({
       method: 'POST',
       path: '/register',
-      handler: controller.createAccount
+      options:{
+        handler: controller.createAccount,
+        tags: ['api'], // ADD THIS TAG
+        description: 'Register account'
+      }
     }),
 
     server.route({
       method: 'POST',
       path: '/login',
-      handler: controller.getCustomer
+      options:{
+        handler: controller.getCustomer,
+        tags: ['api'], // ADD THIS TAG
+        description: 'Login account'
+      }
     })
 
     server.route({

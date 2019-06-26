@@ -8,7 +8,11 @@ exports.plugin = {
     server.route({
       method: 'GET',
       path: '/toppings',
-      handler: controller.getAllTopping
+      options: {
+        handler: controller.getAllTopping,
+        tags: ['api'], // ADD THIS TAG
+        description: 'Get all topping'
+      }
     }),
 
       server.route({

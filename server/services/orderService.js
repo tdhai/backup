@@ -3,33 +3,18 @@ const productModel = require('../models/productModel')
 
 const createOrder = async (customerID, address, phone, date, totalPrice, orderDetails) => {
   try {
+    var totalPriceAllTopping = 0
+    var totalPriceAllProduct = 0
     for(var i = 0; i < orderDetails.length ; i++){
-    // console.log(orderDetails[i].topping, orderDetails[i].productID, orderDetails[i].quantity)
-    const totalPriceProduct = model.totalPriceProduct(orderDetails[i].productID, orderDetails[i].quantity)
-    const totalPriceTopping =await model.totalPriceTopping(orderDetails[i].topping)
-    // console.log(totalPriceTopping)
-
-    // const reducer = async(sum, topping) =>{
-    //   const totalPriceTopping =await model.totalPriceTopping(orderDetails[i].topping)
-    //   return sum + totalPriceTopping 
-    // }
-
-    // const sum = await orderDetails.reduce(reducer, 0)
-    // console.log("abc", sum)
+    let totalPriceProduct = await model.totalPriceProduct(orderDetails[i].productID, orderDetails[i].quantity)
+    let totalPriceTopping = await model.totalPriceTopping(orderDetails[i].topping)
+    totalPriceAllTopping += totalPriceTopping
+    totalPriceAllProduct += totalPriceProduct
     }
-
-    // const reducer =async (sum, orderDetail) => {
-    //   const orderTotalPrice = await model.totalPrice(orderDetails.topping, orderDetails.productID, orderDetails.quantity);
-    //   return sum + orderTotalPrice;
-    // }
-
-    // const totalPriceServer = await orderDetails.reduce(reducer, 0)
-
-    // console.log("service order", totalPriceServer)
-
-    // const a = await model.totalPrice(num)
-    // console.log(a)
-
+    let totalPriceServer = totalPriceAllTopping + totalPriceAllProduct
+    if(totalPrice !== totalPriceServer){
+      return {error: "Total clien wrong!!!"}
+    }
     return await model.createOrder(customerID, address, phone, date, totalPrice, orderDetails)
   } catch (error) {
     throw ("create order service", error)

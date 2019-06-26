@@ -16,16 +16,14 @@ const orderSchema = new Schema({
   }]
 })
 
-const totalPriceProduct = async(productID, quantity) =>{
-  
-    // console.log("productid", productID, "so luong", quantity)
-    const product = await productModel.getProduct(productID)
-    console.log(product)
-    // const a = await product.price * quantity
-    // console.log(a)
-    // return a
-  
-  
+const totalPriceProduct = async (productID, quantity) => {
+  const product = await productModel.getProduct(productID)
+  // console.log(quantity)
+  for (let i = 0; i < product.length; i++) {
+    var totalPriceProduct = await product[i].price * quantity
+  }
+  // console.log(totalPriceProduct)
+  return totalPriceProduct
 }
 
 const totalPriceTopping = async (toppingIDs) => {
@@ -61,8 +59,8 @@ const createOrder = async (customerID, address, phone, date, totalPrice, orderDe
 
 const getOrder = async (customerID) => {
   try {
-    return await Order.find({'customerID': customerID}).populate('customerID').populate('orderDetail.productID').populate('orderDetail.topping')
-    // return await Order.find()
+    // return await Order.find({'customerID': customerID}).populate('customerID').populate('orderDetail.productID').populate('orderDetail.topping')
+    return await Order.find()
   } catch (error) {
     throw { error: "get order model fail" }
   }

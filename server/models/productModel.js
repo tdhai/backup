@@ -37,6 +37,7 @@ const getProduct = async (productID) => {
 const createProduct = async (name, star, picture, detail, size, type, price) => {
   try {
     console.log("vao model")
+    // console.log(name, star, picture, detail, size, type, price)
     var product = new Product();
     product.name = name;
     product.detail = detail;
