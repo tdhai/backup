@@ -17,7 +17,7 @@ exports.plugin = {
 
     server.route({
       method: 'POST',
-      path: '/createTopping',
+      path: '/toppings',
       handler: controller.createTopping
     })
   },

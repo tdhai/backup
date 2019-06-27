@@ -24,7 +24,7 @@ exports.plugin = {
 
       server.route({
         method: 'GET',
-        path: '/category/{id}',
+        path: '/categories/{id}',
         options: {
           handler: controller.getCategory,
           tags: ['api'], // ADD THIS TAG
@@ -39,7 +39,7 @@ exports.plugin = {
 
     server.route({
       method: 'POST',
-      path: '/createCategory',
+      path: '/categories',
       handler: controller.createCategory
     })
   },

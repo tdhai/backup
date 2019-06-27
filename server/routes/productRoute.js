@@ -17,13 +17,13 @@ exports.plugin = {
 
       server.route({
         method: 'GET',
-        path: '/product/{id}',
+        path: '/products/{id}',
         handler: controller.getProduct
       })
 
     server.route({
       method: 'POST',
-      path: '/createProduct',
+      path: '/products',
       handler: controller.createProduct
     })
   },

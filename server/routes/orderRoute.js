@@ -7,7 +7,7 @@ exports.plugin = {
   register: (server, option) => {
     server.route({
       method: 'POST',
-      path: '/order',
+      path: '/orders',
       options: {
         auth: 'jwt',
         handler: controller.createOrder,
@@ -18,7 +18,7 @@ exports.plugin = {
 
     server.route({
       method: 'GET',
-      path: '/order',
+      path: '/orders',
       options: {
         auth: 'jwt',
         handler: controller.getOrder,
