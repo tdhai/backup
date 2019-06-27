@@ -8,13 +8,12 @@ exports.plugin = {
     server.route({
       method: 'POST',
       path: '/order',
-      options:{
+      options: {
         auth: 'jwt',
         handler: controller.createOrder,
         tags: ['api'], // ADD THIS TAG
         description: 'Create order by authorization',
       }
-      
     })
 
     server.route({

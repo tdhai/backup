@@ -1,7 +1,7 @@
 const model = require('../models/orderModel')
 const productModel = require('../models/productModel')
 
-const createOrder = async (customerID, address, phone, date, totalPrice, orderDetails) => {
+const createOrder = async (customerID, address, phone, date, totalPrice, notice, orderDetails) => {
   try {
     var totalPriceAllTopping = 0
     var totalPriceAllProduct = 0
@@ -13,11 +13,11 @@ const createOrder = async (customerID, address, phone, date, totalPrice, orderDe
     }
     let totalPriceServer = totalPriceAllTopping + totalPriceAllProduct
     if(totalPrice !== totalPriceServer){
-      return {error: "Total clien wrong!!!"}
+      return {error: "Total price clien wrong!!!"}
     }
-    return await model.createOrder(customerID, address, phone, date, totalPrice, orderDetails)
+    return await model.createOrder(customerID, address, phone, date, totalPrice, notice, orderDetails)
   } catch (error) {
-    throw ("create order service", error)
+    throw ("create order fail SERVICE", error)
   }
 }
 
@@ -25,7 +25,7 @@ const getOrder = async (customerID) => {
   try {
     return await model.getOrder(customerID)
   } catch (error) {
-    throw ("get order service", error)
+    throw ("get order fail SERVICE", error)
   }
 }
 

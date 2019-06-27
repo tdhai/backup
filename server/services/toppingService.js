@@ -1,20 +1,25 @@
 const model = require('../models/toppingModel')
 
 const getAllTopping = async () => {
-  return await model.getAllTopping();
+  try {
+    return await model.getAllTopping();
+  } catch (error) {
+    throw ("get all topping fail SERVICE", error)
+  }
+
 }
 
-const getTopping = async (name) => {
-  console.log("service")
-  return await model.getTopping(name)
-}
-
-const createTopping = async (name, price) => {
-  return await model.createTopping(name, price)
+const createTopping = async (name, price, picture) => {
+  try {
+    console.log("da service")
+    console.log(name, price)
+    return await model.createTopping(name, price, picture)
+  } catch (error) {
+    throw ("create topping fail SERVICE", error)
+  }
 }
 
 module.exports = {
   getAllTopping,
-  getTopping,
   createTopping
 }

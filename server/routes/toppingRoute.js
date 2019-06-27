@@ -15,12 +15,6 @@ exports.plugin = {
       }
     }),
 
-      server.route({
-        method: 'GET',
-        path: '/topping/{id}',
-        handler: controller.getTopping
-      })
-
     server.route({
       method: 'POST',
       path: '/createTopping',

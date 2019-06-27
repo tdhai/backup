@@ -2,24 +2,25 @@ const service = require('../services/toppingService')
 const mongoose = require('mongoose')
 
 const getAllTopping = async () => {
-  return await service.getAllTopping();
+  try {
+    return await service.getAllTopping();
+  } catch (error) {
+    throw ("get all topping fail CONTROLLER", error)
+  }
 }
 
-const getTopping = async (req, h) =>{
-    console.log("controller")
-  const name =  mongoose.Types.ObjectId(req.params.id)
-  console.log(name)
-  return await service.getTopping(name)
-}
-
-const createTopping = async (req, h) =>{
-  const name = req.payload.name
-  const price = req.payload.price
-  return await service.createTopping(name, price)
+const createTopping = async (req, h) => {
+  try {
+    const name = req.payload.name
+    const price = req.payload.price
+    const picture = req.payload.picture
+    return await service.createTopping(name, price, picture)
+  } catch (error) {
+    throw ("Create topping fail CONTROLLER", error)
+  }
 }
 
 module.exports = {
   createTopping,
-  getAllTopping,
-  getTopping
+  getAllTopping
 }

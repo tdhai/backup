@@ -3,27 +3,41 @@ const Schema = mongoose.Schema
 
 
 const toppingSchema = new Schema({
-  // _id: { type: Schema.Types.ObjectId},a
   name: { type: String, required: true },
-  price: { type: Number, required: true }
+  price: { type: Number, required: true },
+  picture: { type: String, required: true}
 })
 
-const createTopping = async (name, price) => {
-  var topping = new Topping();
-  topping.name = name;
-  topping.price = price;
-  return await topping.save()
+const createTopping = async (name, price, picture) => {
+  try {
+    var topping = new Topping();
+    topping.name = name;
+    topping.price = price;
+    topping.picture = picture;
+    return await topping.save()
+  } catch (error) {
+    throw ("create topping fail MODEL", error)
+  }
 }
 
-const getAllTopping = async() =>{
-  return await Topping.find();
+const getAllTopping = async () => {
+  try {
+    return await Topping.find();
+  } catch (error) {
+    throw ("get all topping fail MODEL", error)
+  }
+
 }
 
-const getToppingByID = async(ids)=>{
-  const topping = await Topping.find({
-    "_id": {$in: ids}
-  })
-  return topping
+const getToppingByID = async (ids) => {
+  try {
+    const topping = await Topping.find({
+      "_id": { $in: ids }
+    })
+    return topping
+  } catch (error) {
+    throw ("get topping by ID fail MODEL", error)
+  }
 }
 
 const Topping = mongoose.model('topping', toppingSchema)

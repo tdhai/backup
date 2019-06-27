@@ -16,11 +16,11 @@ exports.plugin = {
       }
     }),
 
-    server.route({
-      method: 'GET',
-      path: '/',
-      handler: ()=>{return "Wellcom to Pizza Order Hai Truong"}
-    }),
+      server.route({
+        method: 'GET',
+        path: '/',
+        handler: () => { return "Wellcom to Pizza Order Hai Truong" }
+      }),
 
       server.route({
         method: 'GET',
@@ -39,7 +39,7 @@ exports.plugin = {
 
     server.route({
       method: 'POST',
-      path: '/category',
+      path: '/createCategory',
       handler: controller.createCategory
     })
   },

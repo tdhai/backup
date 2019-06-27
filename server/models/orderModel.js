@@ -9,35 +9,32 @@ const orderSchema = new Schema({
   phone: { type: String, required: true },
   date: { type: Date, required: true },
   totalPrice: { type: Number, required: true },
+  notice: {type: String, required: false},
   orderDetail: [{
     productID: { type: Schema.Types.ObjectId, ref: 'product', required: true },
     quantity: { type: Number, require: true },
     topping: [{ type: Schema.Types.ObjectId, ref: 'topping', require: true }]
   }]
 })
-
+//test
 const totalPriceProduct = async (productID, quantity) => {
   const product = await productModel.getProduct(productID)
-  // console.log(quantity)
   for (let i = 0; i < product.length; i++) {
     var totalPriceProduct = await product[i].price * quantity
   }
-  // console.log(totalPriceProduct)
   return totalPriceProduct
 }
 
+//test
 const totalPriceTopping = async (toppingIDs) => {
-  // console.log("id topping", toppingIDs)
   const toppings = await toppingModel.getToppingByID(toppingIDs)
   const priceTopping = await toppings.reduce((sum, topping) => {
     return sum + topping.price
   }, 0)
-  // console.log(priceTopping)
   return priceTopping
-
 }
 
-const createOrder = async (customerID, address, phone, date, totalPrice, orderDetail) => {
+const createOrder = async (customerID, address, phone, date, totalPrice, notice, orderDetail) => {
   try {
     var order = new Order();
     order.customerID = customerID;
@@ -45,15 +42,15 @@ const createOrder = async (customerID, address, phone, date, totalPrice, orderDe
     order.phone = phone;
     order.date = date;
     order.totalPrice = totalPrice;
+    order.notice = notice;
     // orderDetail = productID;
     // orderDetail = quantity;
     // orderDetail = topping;
     order.orderDetail = orderDetail
 
-    // console.log(customerID, address, phone, date, totalPrice, orderDetail)
     return await order.save()
   } catch (error) {
-    throw ("Create order model", error)
+    throw ("Create order fail MODEL", error)
   }
 }
 
@@ -62,7 +59,7 @@ const getOrder = async (customerID) => {
     // return await Order.find({'customerID': customerID}).populate('customerID').populate('orderDetail.productID').populate('orderDetail.topping')
     return await Order.find()
   } catch (error) {
-    throw { error: "get order model fail" }
+    throw (error, "get order MODEL fail")
   }
 }
 

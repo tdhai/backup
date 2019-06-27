@@ -8,7 +8,7 @@ exports.plugin = {
     server.route({
       method: 'GET',
       path: '/products',
-      options:{
+      options: {
         handler: controller.getAllProducts,
         tags: ['api'], // ADD THIS TAG
         description: 'Get all products'

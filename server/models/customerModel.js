@@ -6,21 +6,21 @@ const bcrypt = require('bcrypt')
 const CustomerSchema = new Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
-  // phone: { type: String, required: true },a
-  // address: { type: String, required: true },
   name: { type: String, required: true }
 })
 
 const Customer = mongoose.model('customer', CustomerSchema)
 
 const createAccount = async (cusEmail, cusName, cusPassword) => { //, cusAddress, cusPhone) => {
-  var customer = new Customer();
-  customer.email = cusEmail,
-    customer.password = cusPassword,
-    // customer.phone = cusPhone,
-    // customer.address = cusAddress,
-    customer.name = cusName
-  return await customer.save()
+  try {
+    var customer = new Customer();
+    customer.email = cusEmail,
+      customer.password = cusPassword,
+      customer.name = cusName
+    return await customer.save()
+  } catch (error) {
+    throw ("create account fail MODEL", error)
+  }
 }
 
 const getAllCustomers = async () => {
@@ -32,8 +32,7 @@ const getAllCustomers = async () => {
       return res;
     })
   } catch (error) {
-    console.log(error)
-    return error;
+    throw ("get all customer fail MODEL", error)
   }
 }
 
@@ -43,8 +42,7 @@ const findEmail = async (cusEmail) => {
       "email": cusEmail
     })
   } catch (error) {
-    console.log(error)
-    return error;
+    throw ("find email fail MODEL", error)
   }
 }
 
@@ -56,10 +54,9 @@ const getCustomer = async (cusEmail, cusPassword) => {
     const status = await bcrypt.compare(cusPassword, cusDB.password)
     if (status === false) {
       return { err: 'Password wrong' }
-    }return await helper.tokenString(cusDB._id)
+    } return await helper.tokenString(cusDB._id)
   } catch (error) {
-    console.log(error)
-    return error;
+    throw ("get customer fail MODEL", error)
   }
 }
 
@@ -69,20 +66,18 @@ const findEmailByID = async (id) => {
       "_id": id
     })
   } catch (error) {
-    console.log(error)
-    return error;
+    throw ("find email by id fail MODEL", error)
   }
 }
 
 const findEmailAndUpdate = async (id, cusName, cusPasswordHashed) => {
-  try{
-   let user = await Customer.find({"_id": id});
+  try {
+    let user = await Customer.find({ "_id": id });
     user[0].name = cusName;
     user[0].password = cusPasswordHashed
     return await user[0].save();
-  }catch(err){
-    console.log(err)
-    return err
+  } catch (error) {
+    throw ("find email and update fail MODEL", error)
   }
 }
 

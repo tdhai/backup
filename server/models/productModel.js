@@ -11,13 +11,12 @@ const productSchema = new Schema({
   type: { type: String, required: true },
   price: { type: Number, required: true }
 })
-//a
+
 const getAllProducts = async () => {
   try {
     return await Product.find()
   } catch (error) {
-    console.log(error)
-    return error
+    throw ("get all products fail MODEL", error)
   }
 }
 
@@ -29,15 +28,12 @@ const getProduct = async (productID) => {
     }
     )
   } catch (error) {
-    console.log(error)
-    return error;
+    throw ("get product fail MODEL", error)
   }
 }
 
 const createProduct = async (name, star, picture, detail, size, type, price) => {
   try {
-    console.log("vao model")
-    // console.log(name, star, picture, detail, size, type, price)
     var product = new Product();
     product.name = name;
     product.detail = detail;
@@ -49,7 +45,7 @@ const createProduct = async (name, star, picture, detail, size, type, price) => 
     product.price = price;
     return await product.save()
   } catch (error) {
-    return error
+    throw ("create product fail MODEL", error)
   }
 }
 

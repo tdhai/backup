@@ -25,8 +25,7 @@ const createAccount = async (cusEmail, cusName, cusPassword, cusRePassword) => {
     return await models.createAccount(cusEmail, cusName, cusPasswordHashed) //, cusAddress, cusPhone)
 
   } catch (error) {
-    console.log(error)
-    return error;
+    throw ("create account fail SERVICE", error)
   }
 };
 
@@ -44,12 +43,9 @@ const getCustomer = async (cusEmail, cusPassword) => {
       return { error: "Email is not valid" }
     }
 
-    //const cusPasswordHashed = await helper.hashPassword(cusPassword)
-
     return await models.getCustomer(cusEmail, cusPassword)
   } catch (error) {
-    console.log(error)
-    return error;
+    throw ("get customer fail SERVICE", error)
   }
 }
 
@@ -61,8 +57,7 @@ const updateAccount = async (id, cusName, cusPassword) => {
     const cusPasswordHashed = await helper.hashPassword(cusPassword);
     return await models.findEmailAndUpdate(id, cusName, cusPasswordHashed)
   } catch (error) {
-    console.log(error)
-    return error;
+    throw ("update account fail SERVICE", error)
   }
 }
 
