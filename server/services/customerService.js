@@ -13,7 +13,7 @@ const createAccount = async (cusEmail, cusName, cusPassword, cusRePassword) => {
     }
 
     if (!helper.checkEmail(cusEmail)) {
-      return { error: "Email is not valid" }
+      return { error: "Email is wrong" }
     }
 
     if (await models.findEmail(cusEmail) !== null) {
@@ -33,29 +33,45 @@ const getAllCustomers = async () => {
   return await models.getAllCustomers()
 }
 
-const getCustomer = async (cusEmail, cusPassword) => {
+const login = async (cusEmail, cusPassword) => {
   try {
     if (!helper.checkPassword(cusPassword)) {
       return { error: "Password does not have 8 symbols" }
     }
 
     if (!helper.checkEmail(cusEmail)) {
-      return { error: "Email is not valid" }
+      return { error: "Email is wrong" }
     }
 
-    return await models.getCustomer(cusEmail, cusPassword)
+    return await models.login(cusEmail, cusPassword)
   } catch (error) {
+    throw ("login fail SERVICE", error)
+  }
+}
+
+const getCustomer = async(customerID) =>{
+  try{
+    return await models.findCustomerByID(customerID)
+  }catch(error){
     throw ("get customer fail SERVICE", error)
   }
 }
 
-const updateAccount = async (id, cusName, cusPassword) => {
+const updateName = async (id, cusName) => {
+  try {
+    return await models.findEmailAndUpdateName(id, cusName)
+  } catch (error) {
+    throw ("update account fail SERVICE", error)
+  }
+}
+
+const updatePassword = async (id, cusPassword) => {
   try {
     if (!helper.checkPassword(cusPassword)) {
       return { error: "Password does not have 8 symbols" }
     }
     const cusPasswordHashed = await helper.hashPassword(cusPassword);
-    return await models.findEmailAndUpdate(id, cusName, cusPasswordHashed)
+    return await models.findEmailAndUpdatePassword(id, cusPasswordHashed)
   } catch (error) {
     throw ("update account fail SERVICE", error)
   }
@@ -64,6 +80,8 @@ const updateAccount = async (id, cusName, cusPassword) => {
 module.exports = {
   createAccount,
   getAllCustomers,
-  getCustomer,
-  updateAccount
+  login,
+  updateName,
+  updatePassword,
+  getCustomer
 }

@@ -9,23 +9,19 @@ const orderSchema = new Schema({
   phone: { type: String, required: true },
   date: { type: Date, required: true },
   totalPrice: { type: Number, required: true },
-  notice: {type: String, required: false},
+  notice: { type: String, required: false },
   orderDetail: [{
     productID: { type: Schema.Types.ObjectId, ref: 'product', required: true },
     quantity: { type: Number, require: true },
     topping: [{ type: Schema.Types.ObjectId, ref: 'topping', require: true }]
   }]
 })
-//test
+
 const totalPriceProduct = async (productID, quantity) => {
   const product = await productModel.getProduct(productID)
-  for (let i = 0; i < product.length; i++) {
-    var totalPriceProduct = await product[i].price * quantity
-  }
-  return totalPriceProduct
+  return await product.price * quantity
 }
 
-//test
 const totalPriceTopping = async (toppingIDs) => {
   const toppings = await toppingModel.getToppingByID(toppingIDs)
   const priceTopping = await toppings.reduce((sum, topping) => {
@@ -56,12 +52,22 @@ const createOrder = async (customerID, address, phone, date, totalPrice, notice,
 
 const getOrder = async (customerID) => {
   try {
-    // return await Order.find({'customerID': customerID}).populate('customerID').populate('orderDetail.productID').populate('orderDetail.topping')
-    return await Order.find()
+    return await Order.find({ 'customerID': customerID }).populate('customerID').populate('orderDetail.productID').populate('orderDetail.topping')
+    // return await Order.find()
   } catch (error) {
     throw (error, "get order MODEL fail")
   }
 }
+
+// const getBestSeller = async () => {
+//   try {
+//     // console.log()
+//     const a = await Order.find({})
+//     console.log("ỏderDeatail", a)
+//   } catch (error) {
+//     throw ("get best seller fail MODEL")
+//   }
+// }
 
 const Order = mongoose.model('order', orderSchema)
 
@@ -70,5 +76,6 @@ module.exports = {
   createOrder,
   totalPriceProduct,
   getOrder,
-  totalPriceTopping
+  totalPriceTopping,
+  // getBestSeller
 }

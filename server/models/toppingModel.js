@@ -34,9 +34,14 @@ const getToppingByID = async (ids) => {
     const topping = await Topping.find({
       "_id": { $in: ids }
     })
+    if(!topping){
+      // return "ID is not valid"
+      throw new Error ("Product ID wrong 123 !!!");
+    }
     return topping
   } catch (error) {
-    throw ("get topping by ID fail MODEL", error)
+    // throw ("get topping by ID fail MODEL", error)
+    throw new Error ("Product ID wrong 123 !!!");
   }
 }
 

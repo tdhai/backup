@@ -7,11 +7,10 @@ const createOrder = async (req, h) => {
     phone = req.payload.phone
     date = Date.now()
     totalPrice = req.payload.totalPrice
-
     orderDetail = req.payload.orderDetail
     notice = req.payload.notice
 
-    return await service.createOrder(customerID, address, phone, date, totalPrice, notice, orderDetail)
+    return await service.createOrder(customerID, address, phone, date, totalPrice, notice, orderDetail, h)
   } catch (error) {
     throw ("create order fail CONTROLLER", error)
   }

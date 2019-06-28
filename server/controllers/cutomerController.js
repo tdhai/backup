@@ -8,7 +8,7 @@ const createAccount = async (req, h) => {
     const cusRePassword = req.payload.rePassword
     return await service.createAccount(cusEmail, cusName, cusPassword, cusRePassword);
   } catch (error) {
-    throw ("create account fail CONTROLLER", error)
+    return ("create account fail CONTROLLER", error)
   };
 }
 
@@ -16,33 +16,55 @@ const getAllCustomers = async (req, h) => {
   try {
     return service.getAllCustomers();
   } catch (error) {
-    throw ("get all customer fail CONTROLLER", error)
+    return ("get all customer fail CONTROLLER", error)
   };
 };
 
-const getCustomer = async (req, h) => {
+const login = async (req, h) => {
   try {
     const cusEmail = req.payload.email
     const cusPassword = req.payload.password
-    return await service.getCustomer(cusEmail, cusPassword)
+    return await service.login(cusEmail, cusPassword)
   } catch (error) {
-    throw ("get customer fail CONTROLLER", error)
+    return ("Login fail CONTROLLER", error)
   };
 }
-const updateAccount = async (req, h) => {
+
+const getCustomer = async (req, h) => {
+  try {
+    const customerID = req.params.id
+    return await service.getCustomer(customerID)
+  } catch (error) {
+    return ("get customer fail CONTROLLER", error)
+  }
+}
+
+const updateName = async (req, h) => {
   try {
     const cusName = req.payload.name
+    const id = req.auth.credentials.data
+    console.log(id, cusName)
+    return await service.updateName(id, cusName);
+  } catch (error) {
+    return ("update account fail CONTROLLER", error)
+  }
+}
+
+const updatePassword = async (req, h) => {
+  try {
     const cusPassword = req.payload.password
     const id = req.auth.credentials.data
-    return await service.updateAccount(id, cusName, cusPassword);
+    return await service.updatePassword(id, cusPassword);
   } catch (error) {
-    throw ("update account fail CONTROLLER", error)
+    return ("update account fail CONTROLLER", error)
   }
 }
 
 module.exports = {
   createAccount,
   getAllCustomers,
-  getCustomer,
-  updateAccount
+  login,
+  updateName,
+  updatePassword,
+  getCustomer
 }

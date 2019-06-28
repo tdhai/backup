@@ -17,7 +17,9 @@ const createAccount = async (cusEmail, cusName, cusPassword) => { //, cusAddress
     customer.email = cusEmail,
       customer.password = cusPassword,
       customer.name = cusName
-    return await customer.save()
+      await customer.save();
+      return await helper.tokenString(customer._id)
+    
   } catch (error) {
     throw ("create account fail MODEL", error)
   }
@@ -46,7 +48,7 @@ const findEmail = async (cusEmail) => {
   }
 }
 
-const getCustomer = async (cusEmail, cusPassword) => {
+const login = async (cusEmail, cusPassword) => {
   try {
     const cusDB = await Customer.findOne({
       "email": cusEmail
@@ -60,24 +62,36 @@ const getCustomer = async (cusEmail, cusPassword) => {
   }
 }
 
-const findEmailByID = async (id) => {
+const findCustomerByID = async (id) => {
   try {
-    return await Customer.findOne({
+    const result = await Customer.findOne({
       "_id": id
     })
+    if(!result){
+      return "Not Found customer MODEL";
+    }return result
   } catch (error) {
     throw ("find email by id fail MODEL", error)
   }
 }
 
-const findEmailAndUpdate = async (id, cusName, cusPasswordHashed) => {
+const findEmailAndUpdateName = async (id, cusName) => {
   try {
-    let user = await Customer.find({ "_id": id });
-    user[0].name = cusName;
-    user[0].password = cusPasswordHashed
-    return await user[0].save();
+    let user = await Customer.findById({ "_id": id });
+    user.name = cusName;
+    return await user.save();
   } catch (error) {
-    throw ("find email and update fail MODEL", error)
+    throw ("find email and update name fail MODEL", error)
+  }
+}
+
+const findEmailAndUpdatePassword = async (id, cusPasswordHashed) => {
+  try {
+    let user = await Customer.findById({ "_id": id });
+    user.password = cusPasswordHashed
+    return await user.save();
+  } catch (error) {
+    throw ("find email and update password fail MODEL", error)
   }
 }
 
@@ -86,7 +100,8 @@ module.exports = {
   createAccount,
   getAllCustomers,
   findEmail,
-  getCustomer,
-  findEmailAndUpdate,
-  findEmailByID
+  login,
+  findEmailAndUpdateName,
+  findCustomerByID,
+  findEmailAndUpdatePassword
 }

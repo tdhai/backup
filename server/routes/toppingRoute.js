@@ -1,7 +1,7 @@
 'use strict'
 
 const controller = require('../controllers/toppingController')
-
+const JoiHapi = require('@hapi/joi');
 
 exports.plugin = {
   register: (server, option) => {
@@ -18,7 +18,17 @@ exports.plugin = {
     server.route({
       method: 'POST',
       path: '/toppings',
-      handler: controller.createTopping
+      options:{
+      handler: controller.createTopping,
+      tags:['api'],
+      validate:{
+        payload:{
+          name: JoiHapi.string(),
+          picture: JoiHapi.string(),
+          price: JoiHapi.number()
+        }
+      }
+      }
     })
   },
   name: 'topping'

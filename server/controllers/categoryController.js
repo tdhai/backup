@@ -5,16 +5,19 @@ const getAllCategory = async () => {
   try {
     return await service.getAllCategory()
   } catch (error) {
-    throw ("get all categories fail CONTROLLER", error)
+    return ("get all categories fail CONTROLLER", error)
   }
 }
 
 const getCategory = async (req, h) => {
   try {
-    const id = mongoose.Types.ObjectId(req.params.id)
+    const id =req.params.id
+    if(!mongoose.Types.ObjectId.isValid(id)){
+      return "This ID do not object ID!!!"
+    }
     return await service.getCategory(id)
   } catch (error) {
-    throw ("get category fail CONTROLLER", error)
+    return ("get category fail CONTROLLER", error)
   }
 }
 
@@ -24,7 +27,7 @@ const createCategory = async (req, h) => {
     const id = req.payload.productID
     return await service.createCategory(name, id)
   } catch (error) {
-    throw (" create category fail CONTROLLER", error)
+    return (" create category fail CONTROLLER", error)
   }
 }
 

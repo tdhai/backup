@@ -9,10 +9,12 @@ const getAllProducts = async () => {
 }
 
 const getProduct = async (productID) => {
+  let result;
   try {
-    return await model.getProduct(productID)
+    result = await model.getProduct(productID);
+    return result;
   } catch (error) {
-    throw ("get product fail SERVICE", error)
+    throw error
   }
 }
 

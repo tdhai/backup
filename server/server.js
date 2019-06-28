@@ -16,14 +16,14 @@ const server = new Hapi.Server({
 })
 
 server.app.db = mongoose.connect(
-  // 'mongodb://localhost/pizza',
-  'mongodb+srv://hai1405:hai1405@pizza-apifw.mongodb.net/pizza?retryWrites=true&w=majority',
+  'mongodb://localhost/pizza',
+  // 'mongodb+srv://hai1405:hai1405@pizza-apifw.mongodb.net/pizza?retryWrites=true&w=majority',
   { useNewUrlParser: true , useCreateIndex: true}
 )
 
 const validate = async function (decoded, request) {
-  if (!model.findEmailByID(decoded.data)) {
-    return { isValid: false };
+  if (!model.findCustomerByID(decoded.data)) {
+    return [{ isValid: false }];
   } return { isValid: true }
 };
 

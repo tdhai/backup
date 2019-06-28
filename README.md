@@ -16,7 +16,7 @@
 | --------- | --------------------------- | ----------- | ---
 |Customer   | localhost:3000/login        | Method: POST| Customer login
 |           | localhost:3000/register     | Method: POST| Customer register
-|           | localhost:3000/updateAccount| Method: PUT | Customer update profile
+|           | localhost:3000/updateName| Method: PUT | Customer update profile
 | --------- | --------------------------- | ----------- | ---
 |Order      | localhost:3000/createOrder  | Method: POST| Customer create order by authetication
 |           | localhost:3000/xxxxxx       | Method: GET | Customer view them order

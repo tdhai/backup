@@ -14,7 +14,10 @@ const productSchema = new Schema({
 
 const getAllProducts = async () => {
   try {
-    return await Product.find()
+    const allProduct = await Product.find();
+    if(!allProduct){
+      return "Nothing";
+    } return allProduct;
   } catch (error) {
     throw ("get all products fail MODEL", error)
   }
@@ -23,12 +26,32 @@ const getAllProducts = async () => {
 const getProduct = async (productID) => {
   try {
     console.log(productID)
-    return await Product.find({
+    const result = await Product.findById({
       '_id': productID
+    })
+    if(!result){
+      throw new Error ("Product ID wrong 123 !!!");
     }
-    )
+    return result
   } catch (error) {
-    throw ("get product fail MODEL", error)
+    throw new Error ("Product ID wrong !!!");
+  }
+}
+
+const getListProduct = async (productID) => {
+  try {
+    if(!mongoose.Types.ObjectId.isValid(productID)){
+      return "Product ID not objectID"
+    }
+    const result = await Product.find({
+      '_id': { $in: productID }
+    })
+    if(!result){
+      throw new Error ("Product ID wrong 123 !!!");
+    }
+    return result
+  } catch (error) {
+    throw new Error ("Product ID wrong !!!");
   }
 }
 
@@ -56,4 +79,5 @@ module.exports = {
   getAllProducts,
   getProduct,
   createProduct,
+  getListProduct
 }

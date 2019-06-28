@@ -5,16 +5,20 @@ const getAllProducts = async () => {
   try {
     return await service.getAllProducts();
   } catch (error) {
-    throw ("get all products fail CONTROLLER", error)
+    return ("get all products fail CONTROLLER", error)
   }
 }
 
 const getProduct = async (req, h) => {
   try {
-    const productID = mongoose.Types.ObjectId(req.params.id)
+    // const productID = mongoose.Types.ObjectId(req.params.id)
+    const productID = req.params.id;
+    if(!mongoose.Types.ObjectId.isValid(productID)){
+      return "Product ID not objectID WRONG!!!"
+    }
     return await service.getProduct(productID)
   } catch (error) {
-    throw ("get product by id fail CONTROLLER", error)
+    return h.response(error.message);
   }
 }
 

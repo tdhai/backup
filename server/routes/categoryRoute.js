@@ -1,8 +1,7 @@
 'use strict'
 
 const controller = require('../controllers/categoryController')
-const Joi = require('@hapi/joi');
-
+const JoiHapi = require('@hapi/joi');
 
 exports.plugin = {
   register: (server, option) => {
@@ -31,7 +30,7 @@ exports.plugin = {
           description: 'Get category by id have products',
           validate: {
             params: {
-              id: Joi.string().min(3).max(50)
+              id: JoiHapi.string().min(3).max(50)
             }
           }
         }
@@ -40,7 +39,17 @@ exports.plugin = {
     server.route({
       method: 'POST',
       path: '/categories',
-      handler: controller.createCategory
+      options:{
+      handler: controller.createCategory,
+      tags:['api'],
+      description: 'Create category ADMIN',
+      validate: {
+        payload: {
+          name: JoiHapi.string(),
+          productID: JoiHapi.string()
+        }
+      }
+      }
     })
   },
   name: 'category'
