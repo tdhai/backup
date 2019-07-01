@@ -8,7 +8,7 @@ exports.plugin = {
   register: (server, option) => {
     server.route({
       method: 'POST',
-      path: '/register',
+      path: '/customers/register',
       options: {
         handler: controller.createAccount,
         tags: ['api'], // ADD THIS TAG
@@ -26,7 +26,7 @@ exports.plugin = {
 
       server.route({
         method: 'POST',
-        path: '/login',
+        path: '/customers/login',
         options: {
           handler: controller.login,
           tags: ['api'], // ADD THIS TAG
@@ -68,7 +68,7 @@ exports.plugin = {
 
     server.route({
       method: 'PUT',
-      path: '/updateName',
+      path: '/customers/updateName',
       options: {
         auth: 'jwt',
         handler: controller.updateName,
@@ -86,7 +86,7 @@ exports.plugin = {
 
     server.route({
       method: 'PUT',
-      path: '/updatePassword',
+      path: '/customers/updatePassword',
       options: {
         auth: 'jwt',
         handler: controller.updatePassword,
