@@ -39,8 +39,8 @@ const login = async (cusEmail, cusPassword) => {
       return { error: "Password does not have 8 symbols" }
     }
 
-    if (!helper.checkEmail(cusEmail)) {
-      return { error: "Email is wrong" }
+    if (!helper.checkEmail(cusEmail) ) {
+      return { error: "Email is wrong format" }
     }
 
     return await models.login(cusEmail, cusPassword)

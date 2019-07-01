@@ -37,13 +37,13 @@ exports.plugin = {
       tags: ['api'], // ADD THIS TAG
       validate:{
         payload:{
-          name: JoiHapi.string(),
-          detail: JoiHapi.string(),
-          star: JoiHapi.number(),
-          picture: JoiHapi.string(),
-          size: JoiHapi.string().max(2),
-          type: JoiHapi.string().min(3).max(6),
-          price: JoiHapi.number()
+          name: JoiHapi.string().required(),
+          detail: JoiHapi.string().required(),
+          star: JoiHapi.number().required(),
+          picture: JoiHapi.string().required(),
+          size: JoiHapi.string().max(2).required(),
+          type: JoiHapi.string().min(3).max(6).required(),
+          price: JoiHapi.number().required()
         }
       }
       }

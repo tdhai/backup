@@ -30,7 +30,7 @@ const getProduct = async (productID) => {
       '_id': productID
     })
     if(!result){
-      throw new Error ("Product ID wrong 123 !!!");
+      throw new Error ("Product ID wrong!!!");
     }
     return result
   } catch (error) {

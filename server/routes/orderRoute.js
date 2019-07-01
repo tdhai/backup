@@ -18,9 +18,10 @@ exports.plugin = {
             authorization: JoiHapi.string().required()
           }).unknown(),
           payload: {
-            phone: JoiHapi.string(),
-            address: JoiHapi.string(),
-            totalPrice: JoiHapi.number(),
+            phone: JoiHapi.string().required(),
+            address: JoiHapi.string().required(),
+            totalPrice: JoiHapi.number().required(),
+            notice : JoiHapi.string().max(500),
             orderDetail: JoiHapi.array().items(JoiHapi.object().keys({
               productID: JoiHapi.string(),
               quantity: JoiHapi.number(),

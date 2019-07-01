@@ -45,6 +45,7 @@ const findEmail = async (cusEmail) => {
     })
   } catch (error) {
     throw ("find email fail MODEL", error)
+    // throw new Error ("Email do not find!!!");
   }
 }
 
@@ -53,6 +54,9 @@ const login = async (cusEmail, cusPassword) => {
     const cusDB = await Customer.findOne({
       "email": cusEmail
     })
+    if(!cusDB){
+      return "Email is wrong"
+    }
     const status = await bcrypt.compare(cusPassword, cusDB.password)
     if (status === false) {
       return { err: 'Password wrong' }

@@ -45,8 +45,8 @@ exports.plugin = {
       description: 'Create category ADMIN',
       validate: {
         payload: {
-          name: JoiHapi.string(),
-          productID: JoiHapi.string()
+          name: JoiHapi.string().required(),
+          productID: JoiHapi.string().required()
         }
       }
       }

@@ -15,10 +15,10 @@ exports.plugin = {
         description: 'Register account',
         validate: {
           payload: {
-            email: JoiHapi.string(),
-            password: JoiHapi.string().min(3),
-            rePassword: JoiHapi.string().min(3),
-            name: JoiHapi.string()
+            email: JoiHapi.string().required(),
+            password: JoiHapi.string().min(3).required(),
+            rePassword: JoiHapi.string().min(3).required(),
+            name: JoiHapi.string().required()
           }
         }
       }
@@ -33,8 +33,8 @@ exports.plugin = {
           description: 'Login account',
           validate: {
             payload: {
-              email: JoiHapi.string(),
-              password: JoiHapi.string().min(3)
+              email: JoiHapi.string().required(),
+              password: JoiHapi.string().min(3).required()
             }
           }
         }

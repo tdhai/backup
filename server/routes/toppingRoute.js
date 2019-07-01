@@ -23,9 +23,9 @@ exports.plugin = {
       tags:['api'],
       validate:{
         payload:{
-          name: JoiHapi.string(),
-          picture: JoiHapi.string(),
-          price: JoiHapi.number()
+          name: JoiHapi.string().required(),
+          picture: JoiHapi.string().required(),
+          price: JoiHapi.number().required()
         }
       }
       }

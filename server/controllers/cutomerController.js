@@ -1,5 +1,5 @@
 const service = require('../services/customerService')
-
+const models = require('../models/customerModel')
 const createAccount = async (req, h) => {
   try {
     const cusName = req.payload.name
@@ -26,7 +26,7 @@ const login = async (req, h) => {
     const cusPassword = req.payload.password
     return await service.login(cusEmail, cusPassword)
   } catch (error) {
-    return ("Login fail CONTROLLER", error)
+    throw error
   };
 }
 
