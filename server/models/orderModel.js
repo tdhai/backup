@@ -59,16 +59,6 @@ const getOrder = async (customerID) => {
   }
 }
 
-// const getBestSeller = async () => {
-//   try {
-//     // console.log()
-//     const a = await Order.find({})
-//     console.log("ỏderDeatail", a)
-//   } catch (error) {
-//     throw ("get best seller fail MODEL")
-//   }
-// }
-
 const Order = mongoose.model('order', orderSchema)
 
 module.exports = {
@@ -76,6 +66,5 @@ module.exports = {
   createOrder,
   totalPriceProduct,
   getOrder,
-  totalPriceTopping,
-  // getBestSeller
+  totalPriceTopping
 }

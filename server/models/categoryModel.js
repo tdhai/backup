@@ -5,11 +5,12 @@ const categorySchema = new Schema({
   name: { type: String, required: true },
   productID: [{ type: Schema.Types.ObjectId, ref: "product", required: true }]
 })
-const createCategoy = async (name, id) => {
+const createCategory = async (name, id) => {
   try {
     var category = new Category();
     category.name = name;
     category.productID = id
+    console.log(category.name, category.productID)
     return await category.save();
   } catch (error) {
     throw ("create category fail MODEL", error)
@@ -40,7 +41,7 @@ const Category = mongoose.model('category', categorySchema)
 
 module.exports = {
   Category,
-  createCategoy,
+  createCategory,
   getAllCategory,
   getCategory
 }

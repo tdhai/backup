@@ -39,16 +39,16 @@ exports.plugin = {
     server.route({
       method: 'POST',
       path: '/categories',
-      options:{
-      handler: controller.createCategory,
-      tags:['api'],
-      description: 'Create category ADMIN',
-      validate: {
-        payload: {
-          name: JoiHapi.string().required(),
-          productID: JoiHapi.string().required()
+      options: {
+        handler: controller.createCategory,
+        tags: ['api'],
+        description: 'Create category ADMIN',
+        validate: {
+          payload: {
+            name: JoiHapi.string().required(),
+            productID: JoiHapi.array().items(JoiHapi.string())
+          }
         }
-      }
       }
     })
   },

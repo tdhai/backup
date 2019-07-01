@@ -18,9 +18,8 @@ const getCategory = async (categoryID) => {
 
 const createCategory = async (name, id) => {
   try{
-    
     console.log(name, id)
-    return await model.createCategoy(name, id)
+    return await model.createCategory(name, id)
   }catch(error){
     throw ("create category fail SERVICE", error)
   }

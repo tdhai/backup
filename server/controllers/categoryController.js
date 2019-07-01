@@ -25,6 +25,7 @@ const createCategory = async (req, h) => {
   try {
     const name = req.payload.name
     const id = req.payload.productID
+    console.log(name, id)
     return await service.createCategory(name, id)
   } catch (error) {
     return (" create category fail CONTROLLER", error)

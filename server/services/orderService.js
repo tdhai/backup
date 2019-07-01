@@ -35,7 +35,6 @@ const createOrder = async (customerID, address, phone, date, totalPrice, notice,
 
 const getOrder = async (customerID) => {
   try {
-    // console.log(await model.getBestSeller())
     return await model.getOrder(customerID)
   } catch (error) {
     throw ("get order fail SERVICE", error)
