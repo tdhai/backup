@@ -13,13 +13,17 @@ const createOrder = async (customerID, address, phone, date, totalPrice, notice,
     var totalPriceAllProduct = 0
 
     for (var i = 0; i < orderDetails.length; i++) {
+      if (!productModel.getProduct(orderDetails[i].productID)){
+        return await error
+      }
+
+
       let totalPriceProduct = await model.totalPriceProduct(orderDetails[i].productID, orderDetails[i].quantity)
       let totalPriceTopping = await model.totalPriceTopping(orderDetails[i].topping)
       totalPriceAllTopping += totalPriceTopping
       totalPriceAllProduct += totalPriceProduct
     }
     let totalPriceServer = totalPriceAllTopping + totalPriceAllProduct
-    // console.log("Total price server: ", totalPriceServer)
     if (totalPrice !== totalPriceServer) {
       return { error: "Total price server: " + totalPriceServer + ". \n Total price clien wrong(ProductID or ToppingID is not valid)!!!" }
     }

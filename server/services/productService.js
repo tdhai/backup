@@ -11,7 +11,10 @@ const getAllProducts = async () => {
 const getProduct = async (productID) => {
   let result;
   try {
-    result = await model.getProduct(productID);
+    const result = await model.getProduct(productID);
+    if(!result){
+      return "abc"
+    }
     return result;
   } catch (error) {
     throw error

@@ -34,37 +34,11 @@ const tokenString = (emailID) => {
   return { token: token };
 }
 
-// const Authentication = async (token) => {
-  
-//   try{
-//     return await jwt.verify(token, privateKey)
-//     // return await decoded
-//   }catch(error){
-//     console.log(error)
-//     return { error: 'Fail token'}
-//   };
-// }
-  
-    // let loginName = decoded.data;
-    // return Account.findOne({
-    //   loginName: loginName
-    // }).then(LogedIn => {
-    //   return Account.find((err, res) => {
-    //     if (err) {
-    //       return err;
-    //     }
-    //     return h.continue;
-    //   })
-    // }).catch(err => { return { err }
-//   });
-// }
-
 module.exports = {
   hashPassword,
   checkPhone,
   checkEmail,
   checkPassword,
   comparePassword,
-  tokenString,
-  // Authentication
+  tokenString
 }

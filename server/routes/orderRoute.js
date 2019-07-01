@@ -23,8 +23,8 @@ exports.plugin = {
             totalPrice: JoiHapi.number().required(),
             notice : JoiHapi.string().max(500),
             orderDetail: JoiHapi.array().items(JoiHapi.object().keys({
-              productID: JoiHapi.string(),
-              quantity: JoiHapi.number(),
+              productID: JoiHapi.string().required(),
+              quantity: JoiHapi.number().required(),
               topping: JoiHapi.array().items(JoiHapi.string())
             }))
           }

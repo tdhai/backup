@@ -13,7 +13,7 @@ const orderSchema = new Schema({
   orderDetail: [{
     productID: { type: Schema.Types.ObjectId, ref: 'product', required: true },
     quantity: { type: Number, require: true },
-    topping: [{ type: Schema.Types.ObjectId, ref: 'topping', require: true }]
+    topping: [{ type: Schema.Types.ObjectId, ref: 'topping', require: false }]
   }]
 })
 
