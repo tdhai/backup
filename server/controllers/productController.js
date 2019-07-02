@@ -28,12 +28,14 @@ const createProduct = async (req, h) => {
     const star = await req.payload.star
     const picture = await req.payload.picture
     const detail = await req.payload.detail
-    // const pricing = req.payload.pricing
-    const size = await req.payload.size
-    const type = await req.payload.type
-    const price = await req.payload.price
-    console.log(name, star, picture, detail, size, type, price)
-    return await service.createProduct(name, star, picture, detail, size, type, price);
+    const pricing = req.payload.pricing
+    // const size = await req.payload.size
+    // const type = await req.payload.type
+    // const price = await req.payload.price
+    // console.log(name, star, picture, detail, size, type, price)
+    // return await service.createProduct(name, star, picture, detail, size, type, price);
+    console.log(name, star, picture, detail, pricing)
+    return await service.createProduct(name, star, picture, detail, pricing);
   } catch (error) {
     throw ("create product fail CONTROLLER", error)
   }

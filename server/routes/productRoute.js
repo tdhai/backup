@@ -32,22 +32,26 @@ exports.plugin = {
     server.route({
       method: 'POST',
       path: '/products',
-      options:{
       handler: controller.createProduct,
-      tags: ['api'], // ADD THIS TAG
-      validate:{
-        payload:{
-          name: JoiHapi.string().required(),
-          detail: JoiHapi.string().required(),
-          star: JoiHapi.number().required(),
-          picture: JoiHapi.string().required(),
-          size: JoiHapi.string().max(2).required(),
-          type: JoiHapi.string().min(3).max(6).required(),
-          price: JoiHapi.number().required()
-        }
-      }
-      }
+
+
+      // options:{
+      // handler: controller.createProduct,
+      // tags: ['api'], // ADD THIS TAG
+      // validate:{
+      //   payload:{
+      //     name: JoiHapi.string().required(),
+      //     detail: JoiHapi.string().required(),
+      //     star: JoiHapi.number().required(),
+      //     picture: JoiHapi.string().required(),
+      //     size: JoiHapi.string().max(2).required(),
+      //     type: JoiHapi.string().min(3).max(6).required(),
+      //     price: JoiHapi.number().required()
+      //   }
+      // }
+      // }
     })
+
   },
   name: 'product'
 }

@@ -17,8 +17,7 @@ const createOrder = async (customerID, address, phone, date, totalPrice, notice,
         return await error
       }
 
-
-      let totalPriceProduct = await model.totalPriceProduct(orderDetails[i].productID, orderDetails[i].quantity)
+      let totalPriceProduct = await model.totalPriceProduct(orderDetails[i].productID, orderDetails[i].size, orderDetails[i].type, orderDetails[i].quantity)
       let totalPriceTopping = await model.totalPriceTopping(orderDetails[i].topping)
       totalPriceAllTopping += totalPriceTopping
       totalPriceAllProduct += totalPriceProduct
@@ -41,7 +40,16 @@ const getOrder = async (customerID) => {
   }
 }
 
+const bestSeller = async() =>{
+  try{
+    return await model.bestseller()
+  }catch(error){
+    throw ("best seller fail SERVICE", error)
+  }
+}
+
 module.exports = {
   createOrder,
-  getOrder
+  getOrder,
+  bestSeller
 }

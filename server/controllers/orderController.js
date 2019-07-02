@@ -10,7 +10,7 @@ const createOrder = async (req, h) => {
     totalPrice = req.payload.totalPrice
     orderDetail = req.payload.orderDetail
     notice = req.payload.notice
-
+    console.log(orderDetail)
     return await service.createOrder(customerID, address, phone, date, totalPrice, notice, orderDetail, h)
   } catch (error) {
     throw ("create order fail CONTROLLER", error)
@@ -26,7 +26,19 @@ const getOrder = async (req, h) => {
   }
 }
 
+const bestSeller = async (req, h) => {
+  try {
+    const bestSeller = await service.bestSeller();
+    if (!bestSeller) {
+      return error
+    } return bestSeller
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
   createOrder,
-  getOrder
+  getOrder,
+  bestSeller
 }

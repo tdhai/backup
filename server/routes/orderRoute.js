@@ -24,6 +24,8 @@ exports.plugin = {
             notice : JoiHapi.string().max(500),
             orderDetail: JoiHapi.array().items(JoiHapi.object().keys({
               productID: JoiHapi.string().required(),
+              size: JoiHapi.string().required(),
+              type: JoiHapi.string().required(),
               quantity: JoiHapi.number().required(),
               topping: JoiHapi.array().items(JoiHapi.string())
             }))
@@ -46,9 +48,16 @@ exports.plugin = {
           }).unknown()
         }
       },
-
     })
 
+    server.route({
+      method: 'GET',
+      path: '/categories/bestseller',
+      options:{
+        handler: controller.bestSeller,
+        tags: ['api']
+      }
+    })
 
   },
   name: 'order'

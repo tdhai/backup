@@ -12,14 +12,16 @@ const orderSchema = new Schema({
   notice: { type: String, required: false },
   orderDetail: [{
     productID: { type: Schema.Types.ObjectId, ref: 'product', required: true },
+    size: { type: String, ref: 'product', required: true },
+    type: { type: String, ref: 'product', required: true },
     quantity: { type: Number, require: true },
     topping: [{ type: Schema.Types.ObjectId, ref: 'topping', require: false }]
   }]
 })
 
-const totalPriceProduct = async (productID, quantity) => {
-  const product = await productModel.getProduct(productID)
-  return await product.price * quantity
+const totalPriceProduct = async (productID, size, type, quantity) => {
+  const product = await productModel.getPriceProduct(productID, size, type)
+  return product * quantity
 }
 
 const totalPriceTopping = async (toppingIDs) => {
@@ -52,10 +54,37 @@ const createOrder = async (customerID, address, phone, date, totalPrice, notice,
 
 const getOrder = async (customerID) => {
   try {
-    return await Order.find({ 'customerID': customerID }).populate('customerID').populate('orderDetail.productID').populate('orderDetail.topping')
+    return await Order.find({ 'customerID': customerID })
     // return await Order.find()
   } catch (error) {
     throw (error, "get order MODEL fail")
+  }
+}
+
+const bestseller = async () => {
+  try {
+    const result = Order.aggregate([
+      { $unwind: "$orderDetail" },
+      {
+        $group: {
+          _id: "$orderDetail.productID",
+          count: { $sum: "$orderDetail.quantity" }
+        },
+      },
+      { $sort: { count: -1 } },
+      { $limit: 5 },
+      {
+        $lookup: {
+          from: "products",
+          localField: "_id",
+          foreignField: "_id",
+          as: "Best seller"
+        }
+      }
+    ])
+    return await result
+  } catch (error) {
+    throw error
   }
 }
 
@@ -66,5 +95,6 @@ module.exports = {
   createOrder,
   totalPriceProduct,
   getOrder,
-  totalPriceTopping
+  totalPriceTopping,
+  bestseller
 }

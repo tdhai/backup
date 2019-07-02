@@ -21,9 +21,11 @@ const getProduct = async (productID) => {
   }
 }
 
-const createProduct = async (name, star, picture, detail, size, type, price) => {
+// const createProduct = async (name, star, picture, detail, size, type, price) => {
+  const createProduct = async (name, star, picture, detail, pricing) => {
   try {
-    return await model.createProduct(name, star, picture, detail, size, type, price);
+    // return await model.createProduct(name, star, picture, detail, size, type, price);
+    return await model.createProduct(name, star, picture, detail, pricing);
   } catch (error) {
     throw ("create product fail SERVICE", error)
   }

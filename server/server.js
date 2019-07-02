@@ -6,6 +6,8 @@ const model = require('./models/customerModel')
 const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
+// const Kafka = require("node-rdkafka");
+
 const server = new Hapi.Server({
   // host: 'localhost',
   // port: 3000,
@@ -16,8 +18,8 @@ const server = new Hapi.Server({
 })
 
 server.app.db = mongoose.connect(
-  // 'mongodb://localhost/pizza',
-  'mongodb+srv://hai1405:hai1405@pizza-apifw.mongodb.net/pizza?retryWrites=true&w=majority',
+  'mongodb://localhost/pizza',
+  // 'mongodb+srv://hai1405:hai1405@pizza-apifw.mongodb.net/pizza?retryWrites=true&w=majority',
   { useNewUrlParser: true , useCreateIndex: true}
 )
 
@@ -67,4 +69,17 @@ const init = async () => {
 }
 
 init();
+
+// const consumer = new Kafka.KafkaConsumer(kafkaConf, {
+//   "auto.offset.reset": "beginning"
+// });
+// consumer.on("ready", function(arg) {
+//   consumer.subscribe(topics);
+//   consumer.consume();
+// });
+// consumer.on("data", function(m) {
+//   console.log(m.value.toString());
+// });
+
+// consumer.connect();
 
