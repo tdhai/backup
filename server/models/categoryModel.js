@@ -22,7 +22,7 @@ const getCategory = async (categoryID) => {
     const result = await Category.findOne({ '_id': categoryID }).populate('productID')
     if(!result)
     {
-      return "Category ID wrong"
+      return {error: "Category ID wrong"}
     }return result
   } catch (error) {
     throw ("get category fail MODEL", error)

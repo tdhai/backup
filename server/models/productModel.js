@@ -19,7 +19,7 @@ const getAllProducts = async () => {
   try {
     const allProduct = await Product.find();
     if(!allProduct){
-      return "Nothing";
+      return {error: "Nothing"};
     } return allProduct;
   } catch (error) {
     throw ("get all products fail MODEL", error)
@@ -45,7 +45,7 @@ const getProduct = async (productID) => {
 const getListProduct = async (productID) => {
   try {
     if(!mongoose.Types.ObjectId.isValid(productID)){
-      return "Product ID not objectID"
+      return {error: "Product ID not objectID"}
     }
     const result = await Product.find({
       '_id': { $in: productID }
@@ -87,7 +87,7 @@ const getPriceProduct = async(productID, size, type)=>{
     }
     for(pricing of result.pricing){
       if(pricing.size !== size || pricing.type !== type){
-        return "Size or type is not find"
+        return {error: "Size or type is not find"}
       }return pricing.price
     }
   }catch(error){

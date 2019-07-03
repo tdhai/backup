@@ -55,7 +55,7 @@ const login = async (cusEmail, cusPassword) => {
       "email": cusEmail
     })
     if(!cusDB){
-      return "Email is wrong"
+      return {error: "Email is wrong"}
     }
     const status = await bcrypt.compare(cusPassword, cusDB.password)
     if (status === false) {
@@ -72,7 +72,7 @@ const findCustomerByID = async (id) => {
       "_id": id
     })
     if(!result){
-      return "Not Found customer MODEL";
+      return {error: "Not Found customer MODEL"};
     }return result
   } catch (error) {
     throw ("find email by id fail MODEL", error)
