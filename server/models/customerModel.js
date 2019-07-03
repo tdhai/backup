@@ -18,8 +18,11 @@ const createAccount = async (cusEmail, cusName, cusPassword) => { //, cusAddress
       customer.password = cusPassword,
       customer.name = cusName
       await customer.save();
-      return await helper.tokenString(customer._id)
-    
+      return [
+        await helper.tokenString(customer._id),
+        {name: customer.name},
+        {email: customer.email}
+      ]
   } catch (err) {
     throw ("create account fail MODEL", err)
   }
