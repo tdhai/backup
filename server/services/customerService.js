@@ -65,13 +65,16 @@ const updateName = async (id, cusName) => {
   }
 }
 
-const updatePassword = async (id, cusPassword) => {
+const updatePassword = async (id, passwordOld, passwordNew, rePasswordNew) => {
   try {
-    if (!helper.checkPassword(cusPassword)) {
-      return { err: "Password does not have 8 symbols" }
+    if (!helper.checkPassword(passwordNew) || !helper.checkPassword(passwordOld)) {
+      return { err: "PasswordNew or rePasswordNew or passwordOld does not have 8 symbols" }
     }
-    const cusPasswordHashed = await helper.hashPassword(cusPassword);
-    return await models.findEmailAndUpdatePassword(id, cusPasswordHashed)
+    if(passwordNew !== rePasswordNew){
+      return{ err: "PasswordNew do not like rePasswordNew"}
+    }
+    const passwordNewHashed = await helper.hashPassword(passwordNew);
+    return await models.findEmailAndUpdatePassword(id, passwordOld, passwordNewHashed)
   } catch (err) {
     throw ("update account fail SERVICE", err)
   }

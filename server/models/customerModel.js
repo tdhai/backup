@@ -100,10 +100,15 @@ const findEmailAndUpdateName = async (id, cusName) => {
   }
 }
 
-const findEmailAndUpdatePassword = async (id, cusPasswordHashed) => {
+const findEmailAndUpdatePassword = async (id, passwordOld, passwordNewHashed) => {
   try {
     let user = await Customer.findById({ "_id": id });
-    user.password = cusPasswordHashed
+    const passwordDB = user.password
+    const compare = await helper.comparePassword(passwordOld, passwordDB)
+    if( compare === false){
+      return {err: "password old is not right"}
+    }
+    user.password = passwordNewHashed
     const result = await user.save();
     if(!result){
       return {err: "Update password fail"}

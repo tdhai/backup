@@ -92,9 +92,9 @@ exports.plugin = {
         handler: controller.updatePassword,
         tags: ['api'],
         validate: {
-          payload: {
-            password: JoiHapi.string().min(8)
-          },
+          // payload: {
+          //   password: JoiHapi.string().min(8)
+          // },
           headers: JoiHapi.object().keys({
             authorization: JoiHapi.string().required()
           }).unknown()

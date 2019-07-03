@@ -52,9 +52,11 @@ const updateName = async (req, h) => {
 
 const updatePassword = async (req, h) => {
   try {
-    const cusPassword = req.payload.password
+    const passwordNew = req.payload.passwordNew
+    const rePasswordNew = req.payload.rePasswordNew
+    const passwordOld = req.payload.passwordOld
     const id = req.auth.credentials.data
-    return await service.updatePassword(id, cusPassword);
+    return await service.updatePassword(id, passwordOld, passwordNew, rePasswordNew);
   } catch (err) {
     return ("update account fail CONTROLLER", err)
   }
