@@ -7,16 +7,16 @@ const createAccount = async (req, h) => {
     const cusPassword = req.payload.password
     const cusRePassword = req.payload.rePassword
     return await service.createAccount(cusEmail, cusName, cusPassword, cusRePassword);
-  } catch (error) {
-    return ("create account fail CONTROLLER", error)
+  } catch (err) {
+    return ("create account fail CONTROLLER", err)
   };
 }
 
 const getAllCustomers = async (req, h) => {
   try {
     return service.getAllCustomers();
-  } catch (error) {
-    return ("get all customer fail CONTROLLER", error)
+  } catch (err) {
+    return ("get all customer fail CONTROLLER", err)
   };
 };
 
@@ -25,8 +25,8 @@ const login = async (req, h) => {
     const cusEmail = req.payload.email
     const cusPassword = req.payload.password
     return await service.login(cusEmail, cusPassword)
-  } catch (error) {
-    throw error
+  } catch (err) {
+    throw err
   };
 }
 
@@ -34,8 +34,8 @@ const getCustomer = async (req, h) => {
   try {
     const customerID = req.params.id
     return await service.getCustomer(customerID)
-  } catch (error) {
-    return ("get customer fail CONTROLLER", error)
+  } catch (err) {
+    return ("get customer fail CONTROLLER", err)
   }
 }
 
@@ -45,8 +45,8 @@ const updateName = async (req, h) => {
     const id = req.auth.credentials.data
     console.log(id, cusName)
     return await service.updateName(id, cusName);
-  } catch (error) {
-    return ("update account fail CONTROLLER", error)
+  } catch (err) {
+    return ("update account fail CONTROLLER", err)
   }
 }
 
@@ -55,8 +55,8 @@ const updatePassword = async (req, h) => {
     const cusPassword = req.payload.password
     const id = req.auth.credentials.data
     return await service.updatePassword(id, cusPassword);
-  } catch (error) {
-    return ("update account fail CONTROLLER", error)
+  } catch (err) {
+    return ("update account fail CONTROLLER", err)
   }
 }
 

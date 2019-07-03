@@ -12,8 +12,8 @@ const createCategory = async (name, id) => {
     category.productID = id
     console.log(category.name, category.productID)
     return await category.save();
-  } catch (error) {
-    throw ("create category fail MODEL", error)
+  } catch (err) {
+    throw ("create category fail MODEL", err)
   }
 }
 
@@ -22,18 +22,18 @@ const getCategory = async (categoryID) => {
     const result = await Category.findOne({ '_id': categoryID }).populate('productID')
     if(!result)
     {
-      return {error: "Category ID wrong"}
+      return {err: "Category ID wrong"}
     }return result
-  } catch (error) {
-    throw ("get category fail MODEL", error)
+  } catch (err) {
+    throw ("get category fail MODEL", err)
   }
 }
 
 const getAllCategory = async () => {
   try {
     return await Category.find().populate('productID')
-  } catch (error) {
-    throw ("get all category fail MODEL", error)
+  } catch (err) {
+    throw ("get all category fail MODEL", err)
   }
 }
 

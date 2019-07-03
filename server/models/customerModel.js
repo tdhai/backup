@@ -20,8 +20,8 @@ const createAccount = async (cusEmail, cusName, cusPassword) => { //, cusAddress
       await customer.save();
       return await helper.tokenString(customer._id)
     
-  } catch (error) {
-    throw ("create account fail MODEL", error)
+  } catch (err) {
+    throw ("create account fail MODEL", err)
   }
 }
 
@@ -33,8 +33,8 @@ const getAllCustomers = async () => {
       }
       return res;
     })
-  } catch (error) {
-    throw ("get all customer fail MODEL", error)
+  } catch (err) {
+    throw ("get all customer fail MODEL", err)
   }
 }
 
@@ -43,9 +43,9 @@ const findEmail = async (cusEmail) => {
     return await Customer.findOne({
       "email": cusEmail
     })
-  } catch (error) {
-    throw ("find email fail MODEL", error)
-    // throw new Error ("Email do not find!!!");
+  } catch (err) {
+    throw ("find email fail MODEL", err)
+    // throw new err ("Email do not find!!!");
   }
 }
 
@@ -55,14 +55,14 @@ const login = async (cusEmail, cusPassword) => {
       "email": cusEmail
     })
     if(!cusDB){
-      return {error: "Email is wrong"}
+      return {err: "Email is wrong"}
     }
     const status = await bcrypt.compare(cusPassword, cusDB.password)
     if (status === false) {
       return { err: 'Password wrong' }
     } return await helper.tokenString(cusDB._id)
-  } catch (error) {
-    throw ("get customer fail MODEL", error)
+  } catch (err) {
+    throw ("get customer fail MODEL", err)
   }
 }
 
@@ -72,10 +72,10 @@ const findCustomerByID = async (id) => {
       "_id": id
     })
     if(!result){
-      return {error: "Not Found customer MODEL"};
+      return {err: "Not Found customer MODEL"};
     }return result
-  } catch (error) {
-    throw ("find email by id fail MODEL", error)
+  } catch (err) {
+    throw ("find email by id fail MODEL", err)
   }
 }
 
@@ -84,8 +84,8 @@ const findEmailAndUpdateName = async (id, cusName) => {
     let user = await Customer.findById({ "_id": id });
     user.name = cusName;
     return await user.save();
-  } catch (error) {
-    throw ("find email and update name fail MODEL", error)
+  } catch (err) {
+    throw ("find email and update name fail MODEL", err)
   }
 }
 
@@ -94,8 +94,8 @@ const findEmailAndUpdatePassword = async (id, cusPasswordHashed) => {
     let user = await Customer.findById({ "_id": id });
     user.password = cusPasswordHashed
     return await user.save();
-  } catch (error) {
-    throw ("find email and update password fail MODEL", error)
+  } catch (err) {
+    throw ("find email and update password fail MODEL", err)
   }
 }
 

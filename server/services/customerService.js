@@ -5,15 +5,15 @@ const helper = require('../helper/helper')
 const createAccount = async (cusEmail, cusName, cusPassword, cusRePassword) => { //, cusAddress, cusPhone) => {
   try {
     if (!helper.checkPassword(cusPassword)) {
-      return { error: "Password does not have 8 symbols" }
+      return { err: "Password does not have 8 symbols" }
     }
 
     if (!cusPassword || cusPassword !== cusRePassword) {
-      return { error: "Password does not match rePassword" }
+      return { err: "Password does not match rePassword" }
     }
 
     if (!helper.checkEmail(cusEmail)) {
-      return { error: "Email is wrong" }
+      return { err: "Email is wrong" }
     }
 
     if (await models.findEmail(cusEmail) !== null) {
@@ -24,8 +24,8 @@ const createAccount = async (cusEmail, cusName, cusPassword, cusRePassword) => {
 
     return await models.createAccount(cusEmail, cusName, cusPasswordHashed) //, cusAddress, cusPhone)
 
-  } catch (error) {
-    throw ("create account fail SERVICE", error)
+  } catch (err) {
+    throw ("create account fail SERVICE", err)
   }
 };
 
@@ -36,44 +36,44 @@ const getAllCustomers = async () => {
 const login = async (cusEmail, cusPassword) => {
   try {
     if (!helper.checkPassword(cusPassword)) {
-      return { error: "Password does not have 8 symbols" }
+      return { err: "Password does not have 8 symbols" }
     }
 
     if (!helper.checkEmail(cusEmail) ) {
-      return { error: "Email is wrong format" }
+      return { err: "Email is wrong format" }
     }
 
     return await models.login(cusEmail, cusPassword)
-  } catch (error) {
-    throw ("login fail SERVICE", error)
+  } catch (err) {
+    throw ("login fail SERVICE", err)
   }
 }
 
 const getCustomer = async(customerID) =>{
   try{
     return await models.findCustomerByID(customerID)
-  }catch(error){
-    throw ("get customer fail SERVICE", error)
+  }catch(err){
+    throw ("get customer fail SERVICE", err)
   }
 }
 
 const updateName = async (id, cusName) => {
   try {
     return await models.findEmailAndUpdateName(id, cusName)
-  } catch (error) {
-    throw ("update account fail SERVICE", error)
+  } catch (err) {
+    throw ("update account fail SERVICE", err)
   }
 }
 
 const updatePassword = async (id, cusPassword) => {
   try {
     if (!helper.checkPassword(cusPassword)) {
-      return { error: "Password does not have 8 symbols" }
+      return { err: "Password does not have 8 symbols" }
     }
     const cusPasswordHashed = await helper.hashPassword(cusPassword);
     return await models.findEmailAndUpdatePassword(id, cusPasswordHashed)
-  } catch (error) {
-    throw ("update account fail SERVICE", error)
+  } catch (err) {
+    throw ("update account fail SERVICE", err)
   }
 }
 

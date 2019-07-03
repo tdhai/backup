@@ -47,8 +47,8 @@ const createOrder = async (customerID, address, phone, date, totalPrice, notice,
     order.orderDetail = orderDetail
 
     return await order.save()
-  } catch (error) {
-    throw ("Create order fail MODEL", error)
+  } catch (err) {
+    throw ("Create order fail MODEL", err)
   }
 }
 
@@ -56,8 +56,8 @@ const getOrder = async (customerID) => {
   try {
     return await Order.find({ 'customerID': customerID })
     // return await Order.find()
-  } catch (error) {
-    throw (error, "get order MODEL fail")
+  } catch (err) {
+    throw (err, "get order MODEL fail")
   }
 }
 
@@ -83,8 +83,8 @@ const bestseller = async () => {
       }
     ])
     return await result
-  } catch (error) {
-    throw error
+  } catch (err) {
+    throw err
   }
 }
 

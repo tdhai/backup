@@ -14,7 +14,7 @@ const createOrder = async (customerID, address, phone, date, totalPrice, notice,
 
     for (var i = 0; i < orderDetails.length; i++) {
       if (!productModel.getProduct(orderDetails[i].productID)){
-        return await error
+        return await err
       }
 
       let totalPriceProduct = await model.totalPriceProduct(orderDetails[i].productID, orderDetails[i].size, orderDetails[i].type, orderDetails[i].quantity)
@@ -24,27 +24,27 @@ const createOrder = async (customerID, address, phone, date, totalPrice, notice,
     }
     let totalPriceServer = totalPriceAllTopping + totalPriceAllProduct
     if (totalPrice !== totalPriceServer) {
-      return { error: "Total price server: " + totalPriceServer + ". \n Total price clien wrong(ProductID or ToppingID is not valid)!!!" }
+      return { err: "Total price server: " + totalPriceServer + ". \n Total price clien wrong(ProductID or ToppingID is not valid)!!!" }
     }
     return await model.createOrder(customerID, address, phone, date, totalPrice, notice, orderDetails)
-  } catch (error) {
-    throw ("create order fail SERVICE", error)
+  } catch (err) {
+    throw ("create order fail SERVICE", err)
   }
 }
 
 const getOrder = async (customerID) => {
   try {
     return await model.getOrder(customerID)
-  } catch (error) {
-    throw ("get order fail SERVICE", error)
+  } catch (err) {
+    throw ("get order fail SERVICE", err)
   }
 }
 
 const bestSeller = async() =>{
   try{
     return await model.bestseller()
-  }catch(error){
-    throw ("best seller fail SERVICE", error)
+  }catch(err){
+    throw ("best seller fail SERVICE", err)
   }
 }
 

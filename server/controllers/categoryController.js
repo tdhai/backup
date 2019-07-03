@@ -4,8 +4,8 @@ const mongoose = require('mongoose')
 const getAllCategory = async () => {
   try {
     return await service.getAllCategory()
-  } catch (error) {
-    return ("get all categories fail CONTROLLER", error)
+  } catch (err) {
+    return ("get all categories fail CONTROLLER", err)
   }
 }
 
@@ -16,8 +16,8 @@ const getCategory = async (req, h) => {
       return "This ID do not object ID!!!"
     }
     return await service.getCategory(id)
-  } catch (error) {
-    return ("get category fail CONTROLLER", error)
+  } catch (err) {
+    return ("get category fail CONTROLLER", err)
   }
 }
 
@@ -27,8 +27,8 @@ const createCategory = async (req, h) => {
     const id = req.payload.productID
     console.log(name, id)
     return await service.createCategory(name, id)
-  } catch (error) {
-    return (" create category fail CONTROLLER", error)
+  } catch (err) {
+    return (" create category fail CONTROLLER", err)
   }
 }
 

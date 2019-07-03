@@ -3,8 +3,8 @@ const model = require('../models/productModel')
 const getAllProducts = async () => {
   try {
     return await model.getAllProducts();
-  } catch (error) {
-    throw ("get all product fail SERVICE", error)
+  } catch (err) {
+    throw ("get all product fail SERVICE", err)
   }
 }
 
@@ -16,8 +16,8 @@ const getProduct = async (productID) => {
       return "abc"
     }
     return result;
-  } catch (error) {
-    throw error
+  } catch (err) {
+    throw err
   }
 }
 
@@ -26,8 +26,8 @@ const getProduct = async (productID) => {
   try {
     // return await model.createProduct(name, star, picture, detail, size, type, price);
     return await model.createProduct(name, star, picture, detail, pricing);
-  } catch (error) {
-    throw ("create product fail SERVICE", error)
+  } catch (err) {
+    throw ("create product fail SERVICE", err)
   }
 }
 

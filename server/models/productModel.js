@@ -19,10 +19,10 @@ const getAllProducts = async () => {
   try {
     const allProduct = await Product.find();
     if(!allProduct){
-      return {error: "Nothing"};
+      return {err: "Nothing"};
     } return allProduct;
-  } catch (error) {
-    throw ("get all products fail MODEL", error)
+  } catch (err) {
+    throw ("get all products fail MODEL", err)
   }
 }
 
@@ -32,30 +32,30 @@ const getProduct = async (productID) => {
       '_id': productID
     })
     if(!result){
-      // throw new Error ("Product ID wrong!!!");
-      throw new Error ("Product ID wrong!!!");
+      // throw new err ("Product ID wrong!!!");
+      throw new err ("Product ID wrong!!!");
     }
     return result
-  } catch (error) {
-    // throw new Error ("Product ID wrong !!!");
-    return {error:"Product ID wrong"} ;
+  } catch (err) {
+    // throw new err ("Product ID wrong !!!");
+    return {err:"Product ID wrong"} ;
   }
 }
 
 const getListProduct = async (productID) => {
   try {
     if(!mongoose.Types.ObjectId.isValid(productID)){
-      return {error: "Product ID not objectID"}
+      return {err: "Product ID not objectID"}
     }
     const result = await Product.find({
       '_id': { $in: productID }
     })
     if(!result){
-      throw new Error ("Product ID wrong 123 !!!");
+      throw new err ("Product ID wrong 123 !!!");
     }
     return result
-  } catch (error) {
-    throw new Error ("Product ID wrong !!!");
+  } catch (err) {
+    throw new err ("Product ID wrong !!!");
   }
 }
 
@@ -72,8 +72,8 @@ const getListProduct = async (productID) => {
     // product.type = type;
     // product.price = price;
     return await product.save()
-  } catch (error) {
-    throw ("create product fail MODEL", error)
+  } catch (err) {
+    throw ("create product fail MODEL", err)
   }
 }
 
@@ -83,15 +83,15 @@ const getPriceProduct = async(productID, size, type)=>{
       "_id": productID
     })
     if(!result){
-      throw new Error ("Product ID wrong!!!");
+      throw new err ("Product ID wrong!!!");
     }
     for(pricing of result.pricing){
       if(pricing.size !== size || pricing.type !== type){
-        return {error: "Size or type is not find"}
+        return {err: "Size or type is not find"}
       }return pricing.price
     }
-  }catch(error){
-    return {error:"Product ID wrong"} ;
+  }catch(err){
+    return {err:"Product ID wrong"} ;
   }
 }
 

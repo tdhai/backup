@@ -4,8 +4,8 @@ const mongoose = require('mongoose')
 const getAllTopping = async () => {
   try {
     return await service.getAllTopping();
-  } catch (error) {
-    throw ("get all topping fail CONTROLLER", error)
+  } catch (err) {
+    throw ("get all topping fail CONTROLLER", err)
   }
 }
 
@@ -15,8 +15,8 @@ const createTopping = async (req, h) => {
     const price = req.payload.price
     const picture = req.payload.picture
     return await service.createTopping(name, price, picture)
-  } catch (error) {
-    throw ("Create topping fail CONTROLLER", error)
+  } catch (err) {
+    throw ("Create topping fail CONTROLLER", err)
   }
 }
 

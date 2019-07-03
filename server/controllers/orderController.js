@@ -12,8 +12,8 @@ const createOrder = async (req, h) => {
     notice = req.payload.notice
     console.log(orderDetail)
     return await service.createOrder(customerID, address, phone, date, totalPrice, notice, orderDetail, h)
-  } catch (error) {
-    throw ("create order fail CONTROLLER", error)
+  } catch (err) {
+    throw ("create order fail CONTROLLER", err)
   }
 }
 
@@ -21,8 +21,8 @@ const getOrder = async (req, h) => {
   try {
     const customerID = req.auth.credentials.data
     return await service.getOrder(customerID)
-  } catch (error) {
-    throw ("get order fail CONTROLLER", error)
+  } catch (err) {
+    throw ("get order fail CONTROLLER", err)
   }
 }
 
@@ -30,10 +30,10 @@ const bestSeller = async (req, h) => {
   try {
     const bestSeller = await service.bestSeller();
     if (!bestSeller) {
-      return error
+      return err
     } return bestSeller
-  } catch (error) {
-    throw error
+  } catch (err) {
+    throw err
   }
 }
 

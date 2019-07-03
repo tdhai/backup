@@ -15,16 +15,16 @@ const createTopping = async (name, price, picture) => {
     topping.price = price;
     topping.picture = picture;
     return await topping.save()
-  } catch (error) {
-    throw ("create topping fail MODEL", error)
+  } catch (err) {
+    throw ("create topping fail MODEL", err)
   }
 }
 
 const getAllTopping = async () => {
   try {
     return await Topping.find();
-  } catch (error) {
-    throw ("get all topping fail MODEL", error)
+  } catch (err) {
+    throw ("get all topping fail MODEL", err)
   }
 
 }
@@ -36,12 +36,12 @@ const getToppingByID = async (ids) => {
     })
     if(!topping){
       // return "ID is not valid"
-      throw new Error ("Product ID wrong 123 !!!");
+      throw new err ("Product ID wrong 123 !!!");
     }
     return topping
-  } catch (error) {
-    // throw ("get topping by ID fail MODEL", error)
-    throw new Error ("Product ID wrong 123 !!!");
+  } catch (err) {
+    // throw ("get topping by ID fail MODEL", err)
+    throw new err ("Product ID wrong 123 !!!");
   }
 }
 

@@ -3,8 +3,8 @@ const model = require('../models/toppingModel')
 const getAllTopping = async () => {
   try {
     return await model.getAllTopping();
-  } catch (error) {
-    throw ("get all topping fail SERVICE", error)
+  } catch (err) {
+    throw ("get all topping fail SERVICE", err)
   }
 
 }
@@ -14,8 +14,8 @@ const createTopping = async (name, price, picture) => {
     console.log("da service")
     console.log(name, price)
     return await model.createTopping(name, price, picture)
-  } catch (error) {
-    throw ("create topping fail SERVICE", error)
+  } catch (err) {
+    throw ("create topping fail SERVICE", err)
   }
 }
 

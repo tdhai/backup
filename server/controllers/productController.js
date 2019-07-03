@@ -4,8 +4,8 @@ const mongoose = require('mongoose')
 const getAllProducts = async () => {
   try {
     return await service.getAllProducts();
-  } catch (error) {
-    return ("get all products fail CONTROLLER", error)
+  } catch (err) {
+    return ("get all products fail CONTROLLER", err)
   }
 }
 
@@ -17,8 +17,8 @@ const getProduct = async (req, h) => {
       return "Product ID not objectID WRONG!!!"
     }
     return await service.getProduct(productID)
-  } catch (error) {
-    return h.response(error.message);
+  } catch (err) {
+    return h.response(err.message);
   }
 }
 
@@ -36,8 +36,8 @@ const createProduct = async (req, h) => {
     // return await service.createProduct(name, star, picture, detail, size, type, price);
     console.log(name, star, picture, detail, pricing)
     return await service.createProduct(name, star, picture, detail, pricing);
-  } catch (error) {
-    throw ("create product fail CONTROLLER", error)
+  } catch (err) {
+    throw ("create product fail CONTROLLER", err)
   }
 }
 
