@@ -82,6 +82,9 @@ const bestseller = async () => {
         }
       }
     ])
+    if(!result){
+      return {err: "Do not have best seller,, because I do not order"}
+    }
     return await result
   } catch (err) {
     throw err

@@ -60,7 +60,12 @@ const login = async (cusEmail, cusPassword) => {
     const status = await bcrypt.compare(cusPassword, cusDB.password)
     if (status === false) {
       return { err: 'Password wrong' }
-    } return await helper.tokenString(cusDB._id)
+    } 
+    return [
+      await helper.tokenString(cusDB._id),
+      {email: cusDB.email},
+      {name: cusDB.name}
+    ]
   } catch (err) {
     throw ("get customer fail MODEL", err)
   }
@@ -83,7 +88,10 @@ const findEmailAndUpdateName = async (id, cusName) => {
   try {
     let user = await Customer.findById({ "_id": id });
     user.name = cusName;
-    return await user.save();
+    const result = await user.save();
+    if(!result){
+      return {err: "Update name fail"}
+    }return {name: result.name}
   } catch (err) {
     throw ("find email and update name fail MODEL", err)
   }
@@ -93,7 +101,10 @@ const findEmailAndUpdatePassword = async (id, cusPasswordHashed) => {
   try {
     let user = await Customer.findById({ "_id": id });
     user.password = cusPasswordHashed
-    return await user.save();
+    const result = await user.save();
+    if(!result){
+      return {err: "Update password fail"}
+    }return {status: "Successfull"}
   } catch (err) {
     throw ("find email and update password fail MODEL", err)
   }

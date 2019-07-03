@@ -42,7 +42,11 @@ const getOrder = async (customerID) => {
 
 const bestSeller = async() =>{
   try{
-    return await model.bestseller()
+    const result = await model.bestseller()
+    if(!result){
+      return {err: "Do not have best seller,, because I do not order"}
+    }
+    return await result
   }catch(err){
     throw ("best seller fail SERVICE", err)
   }

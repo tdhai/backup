@@ -6,7 +6,6 @@ const model = require('./models/customerModel')
 const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
-// const Kafka = require("node-rdkafka");
 
 const server = new Hapi.Server({
   // host: 'localhost',
@@ -69,17 +68,4 @@ const init = async () => {
 }
 
 init();
-
-// const consumer = new Kafka.KafkaConsumer(kafkaConf, {
-//   "auto.offset.reset": "beginning"
-// });
-// consumer.on("ready", function(arg) {
-//   consumer.subscribe(topics);
-//   consumer.consume();
-// });
-// consumer.on("data", function(m) {
-//   console.log(m.value.toString());
-// });
-
-// consumer.connect();
 
