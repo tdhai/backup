@@ -20,6 +20,8 @@ const orderSchema = new Schema({
 })
 
 const totalPriceProduct = async (productID, size, type, quantity) => {
+  // console.log(productID, size, type)
+  console.log(await productModel.getPriceProduct(productID, size, type))
   const product = await productModel.getPriceProduct(productID, size, type)
   return product * quantity
 }

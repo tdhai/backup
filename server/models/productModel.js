@@ -86,10 +86,11 @@ const getPriceProduct = async(productID, size, type)=>{
       throw new err ("Product ID wrong!!!");
     }
     for(pricing of result.pricing){
-      if(pricing.size !== size || pricing.type !== type){
-        return {err: "Size or type is not find"}
-      }return pricing.price
-    }
+      if(pricing.size === size && pricing.type === type){
+        return pricing.price 
+      }
+    }return {err: "Size or type is not find"}
+    
   }catch(err){
     return {err:"Product ID wrong"} ;
   }
