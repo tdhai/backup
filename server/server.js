@@ -1,11 +1,12 @@
 'use strict'
-require('dotenv').config()
+require('dotenv').config();
 const Hapi = require('@hapi/hapi')
 const mongoose = require('mongoose')
 const model = require('./models/customerModel')
 const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
+
 
 const server = new Hapi.Server({
   // host: 'localhost',
@@ -38,8 +39,8 @@ const init = async () => {
   await server
     .register([
 
-      { plugin: require('hapi-auth-jwt2') }
-
+      { plugin: require('hapi-auth-jwt2') },
+      
     ]);
 
   server.auth.strategy('jwt', 'jwt',
@@ -63,6 +64,7 @@ const init = async () => {
     }
   ])
   await server.start()
+  require('./kafka/consumer')
   console.log(`Server running at: ${server.info.uri}`)
   // console.log("started");
 }
