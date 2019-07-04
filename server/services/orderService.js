@@ -18,7 +18,7 @@ const createOrder = async (customerID, address, phone, date, totalPrice, notice,
       }
 
       let totalPriceProduct = await model.totalPriceProduct(orderDetails[i].productID, orderDetails[i].size, orderDetails[i].type, orderDetails[i].quantity)
-      let totalPriceTopping = await model.totalPriceTopping(orderDetails[i].topping)
+      let totalPriceTopping = await model.totalPriceTopping(orderDetails[i].topping, orderDetails[i].quantity)
       totalPriceAllTopping += totalPriceTopping
       totalPriceAllProduct += totalPriceProduct
     }

@@ -26,12 +26,12 @@ const totalPriceProduct = async (productID, size, type, quantity) => {
   return product * quantity
 }
 
-const totalPriceTopping = async (toppingIDs) => {
+const totalPriceTopping = async (toppingIDs, quantity) => {
   const toppings = await toppingModel.getToppingByID(toppingIDs)
   const priceTopping = await toppings.reduce((sum, topping) => {
     return sum + topping.price
   }, 0)
-  return priceTopping
+  return priceTopping * quantity
 }
 
 const createOrder = async (customerID, address, phone, date, totalPrice, notice, orderDetail) => {
