@@ -93,7 +93,9 @@ exports.plugin = {
         tags: ['api'],
         validate: {
           payload: {
-            password: JoiHapi.string()
+            passwordOld: JoiHapi.string(),
+            passwordNew: JoiHapi.string(),
+            rePasswordNew: JoiHapi.string()
           },
           headers: JoiHapi.object().keys({
             authorization: JoiHapi.string().required()
