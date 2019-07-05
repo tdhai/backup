@@ -18,7 +18,7 @@ exports.plugin = {
             authorization: JoiHapi.string().required()
           }).unknown(),
           payload: {
-            phone: JoiHapi.string().required(),
+            phone: JoiHapi.string().required().max(10),
             address: JoiHapi.string().required(),
             totalPrice: JoiHapi.number().required(),
             notice : JoiHapi.string().max(500),
