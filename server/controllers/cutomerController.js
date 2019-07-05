@@ -1,6 +1,7 @@
 const service = require('../services/customerService')
 const models = require('../models/customerModel')
 const producer = require('../kafka/producer')
+const consumer = require('../kafka/consumer')
 
 const createAccount = async (req, h) => {
   try {
@@ -24,8 +25,12 @@ const getAllCustomers = async (req, h) => {
 
 const login = async (req, h) => {
   try {
-    console.log("ASDASSAAAAAAAAAAAAAAAAAAAAAAAAaaaa")
-    producer.send(req.payload.email)
+    const a =req.payload.email
+    // await producer.send(a)
+    // await consumer
+
+    producer.sendMessage()
+
     const cusEmail = req.payload.email
     const cusPassword = req.payload.password
     
