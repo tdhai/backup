@@ -30,7 +30,7 @@ const getAllCustomers = async (req, h) => {
 
 const login = async (req, h) => {
   try {
-    const a = req.payload.email;
+    // const a = req.payload.email;
     // await producer.send(a)
     // await consumer
 
