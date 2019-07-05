@@ -34,7 +34,7 @@ const login = async (req, h) => {
     // await producer.send(a)
     // await consumer
 
-    producer.sendMessage();
+    // producer.sendMessage();
 
     const cusEmail = req.payload.email;
     const cusPassword = req.payload.password;
