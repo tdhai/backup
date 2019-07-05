@@ -1,5 +1,5 @@
-var Kafka = require("node-rdkafka");
-require('dotenv').config();
+// var Kafka = require("node-rdkafka");
+// require('dotenv').config();
 
 exports.plugin = {
   register: (server, option) => {

@@ -25,12 +25,17 @@ const getAllCustomers = async (req, h) => {
 
 const login = async (req, h) => {
   try {
+<<<<<<< HEAD
     const a =req.payload.email
     // await producer.send(a)
     // await consumer
 
     producer.sendMessage()
 
+=======
+    // console.log("ASDASSAAAAAAAAAAAAAAAAAAAAAAAAaaaa")
+    // producer.send(req.payload.email)
+>>>>>>> fefc4e79b9f2011dddb349d871bd661c67e64abe
     const cusEmail = req.payload.email
     const cusPassword = req.payload.password
     
