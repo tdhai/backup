@@ -55,7 +55,7 @@ const init = async () => {
     { plugin: require('./routes/categoryRoute') },
     { plugin: require('./routes/toppingRoute') },
     { plugin: require('./routes/orderRoute') },
-    { plugin: require('./kafka/consumer')},
+    // { plugin: require('./kafka/consumer')},
     Inert,
     Vision,
     {
