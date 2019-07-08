@@ -64,7 +64,6 @@ const init = async () => {
     }
   ])
   await server.start()
-  // require('./kafka/consumer')
   console.log(`Server running at: ${server.info.uri}`)
   // console.log("started");
 }

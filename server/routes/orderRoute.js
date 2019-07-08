@@ -52,7 +52,7 @@ exports.plugin = {
 
     server.route({
       method: 'GET',
-      path: '/categories/bestseller',
+      path: '/products/bestseller',
       options:{
         handler: controller.bestSeller,
         tags: ['api']
