@@ -8,7 +8,7 @@ const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
 
 const server = new Hapi.Server({
-  // host: 'localhost',
+  host: 'localhost',
   // port: 3000,
   port:  process.env.PORT,
   routes: {
@@ -55,7 +55,7 @@ const init = async () => {
     { plugin: require('./routes/categoryRoute') },
     { plugin: require('./routes/toppingRoute') },
     { plugin: require('./routes/orderRoute') },
-    // { plugin: require('./kafka/consumer')},
+    { plugin: require('./kafka/consumer')},
     Inert,
     Vision,
     {
