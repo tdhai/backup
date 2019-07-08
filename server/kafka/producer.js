@@ -6,8 +6,6 @@ const kafkaConf = {
   "group.id": "cloudkarafka-example",
   "metadata.broker.list": process.env.CLOUDKARAFKA_BROKERS.split(','),
   "socket.keepalive.enable": true,
-//   "security.protocol": "SASL_PLAINTEXT",
-// npm start  "sasl.mechanisms": "GSSAPI",
   "security.protocol": "SASL_SSL",
   "sasl.mechanisms": "SCRAM-SHA-256",
   "sasl.username": process.env.CLOUDKARAFKA_USERNAME,
@@ -70,7 +68,6 @@ const sendMessage = () => {
     // console.log(log);    
   });
 
- 
 
   producer.on("disconnected", function (arg) {
     // process.exit();
@@ -84,3 +81,6 @@ module.exports = {
 
 }
 
+module.exports = {
+  sendMessage,
+}
